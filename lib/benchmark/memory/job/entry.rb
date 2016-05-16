@@ -1,3 +1,6 @@
+require "memory_profiler"
+require "benchmark/memory/measurement"
+
 module Benchmark
   module Memory
     class Job
@@ -23,6 +26,21 @@ module Benchmark
 
         # @return [#to_s] The label for the benchmark.
         attr_reader :label
+
+        # Call the action and report on its memory usage.
+        #
+        # @return [Measurement] the memory usage measurement of the code.
+        def call
+          result = while_measuring_memory_usage { action.call }
+
+          Measurement.from_result(result)
+        end
+
+        private
+
+        def while_measuring_memory_usage(&block)
+          MemoryProfiler.report({}, &block)
+        end
       end
     end
   end

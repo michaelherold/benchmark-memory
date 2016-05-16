@@ -8,4 +8,13 @@ RSpec.describe Benchmark::Memory::Job::Entry do
       end.to raise_error(ArgumentError)
     end
   end
+
+  describe "#call" do
+    it "returns a measurement of the memory usage in the action" do
+      action = -> {}
+      entry = Benchmark::Memory::Job::Entry.new("empty proc", action)
+
+      expect(entry.call).to be_a Benchmark::Memory::Measurement
+    end
+  end
 end
