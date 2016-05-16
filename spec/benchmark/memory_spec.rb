@@ -16,8 +16,8 @@ RSpec.describe Benchmark::Memory do
       )
     end
 
-    it "does not raise an error when given a block" do
-      expect { Benchmark.memory {} }.not_to raise_error
+    it "returns a report" do
+      expect(Benchmark.memory {}).to be_a(Benchmark::Memory::Report)
     end
   end
 end
