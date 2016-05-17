@@ -10,9 +10,9 @@ module Benchmark
       def self.from_result(result)
         memory  = Metric.new(:memsize, result.total_allocated_memsize, result.total_retained_memsize)
         objects = Metric.new(:objects, result.total_allocated, result.total_retained)
-        strings = Metric.new(:strings, result.strings_allocated, result.strings_retained)
+        strings = Metric.new(:strings, result.strings_allocated.size, result.strings_retained.size)
 
-        new(strings, objects, memory)
+        new(:memory => memory, :objects => objects, :strings => strings)
       end
 
       # Instantiate a Measurement of memory usage.
@@ -20,7 +20,7 @@ module Benchmark
       # @param memory [Metric] The memory usage of an action.
       # @param objects [Metric] The object allocations of an action.
       # @param strings [Metric] The string allocations of an action.
-      def initialize(memory, objects, strings)
+      def initialize(memory:, objects:, strings:)
         @metrics = {
           :memory => memory,
           :objects => objects,

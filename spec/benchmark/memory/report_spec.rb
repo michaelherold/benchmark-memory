@@ -18,8 +18,8 @@ RSpec.describe Benchmark::Memory::Report do
   end
 
   def create_measurement
-    metrics = Array.new(3) { create_metric }
-    Benchmark::Memory::Measurement.new(*metrics)
+    metrics = {:memory => create_metric, :objects => create_metric, :strings => create_metric}
+    Benchmark::Memory::Measurement.new(metrics)
   end
 
   def create_metric
