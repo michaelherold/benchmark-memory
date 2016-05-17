@@ -4,6 +4,9 @@ module Benchmark
   module Memory
     # Encapsulate the combined metrics of an action.
     class Measurement
+      include Enumerable
+      extend Forwardable
+
       # Create a Measurement from a MemoryProfiler::Results object.
       #
       # @param result [MemoryProfiler::Results] The results of a MemoryProfiler report.
@@ -21,12 +24,14 @@ module Benchmark
       # @param objects [Metric] The object allocations of an action.
       # @param strings [Metric] The string allocations of an action.
       def initialize(memory:, objects:, strings:)
-        @metrics = {
-          :memory => memory,
-          :objects => objects,
-          :strings => strings,
-        }
+        @metrics = [memory, objects, strings]
       end
+
+      # @return [Array<Metric>] The metrics for the measurement.
+      attr_reader :metrics
+
+      # Enumerate through the metrics when enumerating a measurement.
+      def_delegator :@metrics, :each
     end
   end
 end
