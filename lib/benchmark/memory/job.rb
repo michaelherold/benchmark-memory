@@ -1,4 +1,5 @@
 require "benchmark/memory/job/task"
+require "benchmark/memory/job/io_output"
 require "benchmark/memory/report"
 
 module Benchmark
@@ -6,9 +7,13 @@ module Benchmark
     # Encapsulate the memory measurements of reports.
     class Job
       # Instantiate a job for containing memory performance reports.
+      #
+      # @param output [#puts] The output to use for showing the job results.
+      #
       # @return [Job]
-      def initialize
+      def initialize(output: $stdout)
         @full_report = Report.new
+        @output = IOOutput.new(output)
         @tasks = []
       end
 
@@ -34,6 +39,8 @@ module Benchmark
       #
       # @return [Report]
       def run
+        @output.put_header
+
         tasks.each do |task|
           measurement = task.call
           full_report.add_entry(task, measurement)
