@@ -5,9 +5,11 @@ module Benchmark
       class Metric
         # Instantiate a Metric of allocated vs. retained memory.
         #
+        # @param type [Symbol] The type of memory allocated in the metric.
         # @param allocated [Integer] The amount allocated in the metric.
         # @param retained [Integer] The amount retained in the metric.
-        def initialize(allocated, retained)
+        def initialize(type, allocated, retained)
+          @type = type
           @allocated = allocated
           @retained = retained
         end
@@ -17,6 +19,9 @@ module Benchmark
 
         # @return [Integer] The amount retained in the metric.
         attr_reader :retained
+
+        # @return [Symbol] The type of memory allocated in the metric.
+        attr_reader :type
       end
     end
   end

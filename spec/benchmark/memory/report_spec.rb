@@ -23,6 +23,6 @@ RSpec.describe Benchmark::Memory::Report do
   end
 
   def create_metric
-    Benchmark::Memory::Measurement::Metric.new(0, 0)
+    Benchmark::Memory::Measurement::Metric.new(:fake, 0, 0)
   end
 end

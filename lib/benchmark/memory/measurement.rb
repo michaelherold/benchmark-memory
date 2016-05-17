@@ -8,9 +8,9 @@ module Benchmark
       #
       # @param result [MemoryProfiler::Results] The results of a MemoryProfiler report.
       def self.from_result(result)
-        memory  = Metric.new(result.total_allocated_memsize, result.total_retained_memsize)
-        objects = Metric.new(result.total_allocated, result.total_retained)
-        strings = Metric.new(result.strings_allocated, result.strings_retained)
+        memory  = Metric.new(:memsize, result.total_allocated_memsize, result.total_retained_memsize)
+        objects = Metric.new(:objects, result.total_allocated, result.total_retained)
+        strings = Metric.new(:strings, result.strings_allocated, result.strings_retained)
 
         new(strings, objects, memory)
       end
