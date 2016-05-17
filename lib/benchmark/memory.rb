@@ -1,4 +1,5 @@
 require "benchmark/memory/errors"
+require "benchmark/memory/helpers"
 require "benchmark/memory/job"
 require "benchmark/memory/version"
 
