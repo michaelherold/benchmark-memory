@@ -1,3 +1,4 @@
+require "benchmark/memory/report/comparison"
 require "benchmark/memory/report/entry"
 
 module Benchmark
@@ -24,6 +25,20 @@ module Benchmark
         entry = Entry.new(task.label, measurement)
         entries.push(entry)
         entry
+      end
+
+      # Return true if the report is comparable.
+      #
+      # @return [TrueClass, FalseClass]
+      def comparable?
+        comparison.possible?
+      end
+
+      # Compare the entries within a report.
+      #
+      # @return [Comparison]
+      def comparison
+        @comparison ||= Comparison.new(entries)
       end
     end
   end

@@ -17,7 +17,16 @@ module Benchmark
           @io.puts entry.body
         end
 
-        # Put the header onto the output
+        # Put the comparison onto the output.
+        #
+        # @return [void]
+        def put_comparison(comparison)
+          @io.puts
+          @io.puts "Comparison:"
+          @io.puts comparison.body
+        end
+
+        # Put the header onto the output.
         #
         # @return [void]
         def put_header

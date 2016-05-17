@@ -12,6 +12,7 @@ module Benchmark
       #
       # @return [Job]
       def initialize(output: $stdout)
+        @compare = false
         @full_report = Report.new
         @output = IOOutput.new(output)
         @tasks = []
@@ -22,6 +23,20 @@ module Benchmark
 
       # @return [Array<Task>] the measurement tasks to run.
       attr_reader :tasks
+
+      # Check whether the job should do a comparison.
+      #
+      # @return [TrueClass, FalseClass]
+      def compare?
+        @compare
+      end
+
+      # Enable output of a comparison of the different tasks.
+      #
+      # @return [void]
+      def compare!
+        @compare = true
+      end
 
       # Add a measurement entry to the job to measure the specified block.
       #
@@ -48,6 +63,15 @@ module Benchmark
         end
 
         full_report
+      end
+
+      # Run a comparison of the entries and puts it on the output.
+      #
+      # @return [void]
+      def run_comparison
+        if compare? && full_report.comparable?
+          @output.put_comparison(full_report.comparison)
+        end
       end
     end
   end

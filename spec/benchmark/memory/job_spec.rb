@@ -25,6 +25,29 @@ RSpec.describe Benchmark::Memory::Job do
     end
   end
 
+  describe "#run_comparison" do
+    it "does not run if there are no entries" do
+      job, output = create_job_and_output
+
+      job.run
+      job.run_comparison
+
+      expect(output.string).not_to match(/Comparison/)
+    end
+
+    it "runs when there are entries and the job is configured to compare" do
+      job, output = create_job_and_output
+      job.report("with you") {}
+      job.report("my brown eyed girl") {}
+      job.compare!
+
+      job.run
+      job.run_comparison
+
+      expect(output.string).to match(/Comparison/)
+    end
+  end
+
   def create_job_and_output
     output = StringIO.new
     job = Benchmark::Memory::Job.new(:output => output)

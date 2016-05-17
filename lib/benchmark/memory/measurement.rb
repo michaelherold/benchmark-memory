@@ -5,6 +5,7 @@ module Benchmark
   module Memory
     # Encapsulate the combined metrics of an action.
     class Measurement
+      include Comparable
       include Enumerable
       extend Forwardable
 
@@ -25,14 +26,36 @@ module Benchmark
       # @param objects [Metric] The object allocations of an action.
       # @param strings [Metric] The string allocations of an action.
       def initialize(memory:, objects:, strings:)
-        @metrics = [memory, objects, strings]
+        @memory = memory
+        @objects = objects
+        @strings = strings
+        @metrics = [@memory, @objects, @strings]
       end
+
+      # @return [Metric] The memory allocation metric.
+      attr_reader :memory
 
       # @return [Array<Metric>] The metrics for the measurement.
       attr_reader :metrics
 
       # Enumerate through the metrics when enumerating a measurement.
-      def_delegator :@metrics, :each
+      def_delegator :metrics, :each
+
+      # Compare two measurements for sorting purposes.
+      #
+      # @param other [Measurement] The other measurement
+      #
+      # @return [Integer]
+      def <=>(other)
+        memory <=> other.memory
+      end
+
+      # Total amount of allocated memory for the measurement.
+      #
+      # @return [Integer]
+      def allocated_memory
+        memory.allocated
+      end
     end
   end
 end

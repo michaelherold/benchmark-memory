@@ -18,6 +18,13 @@ module Benchmark
         # @return [Measurement] The measurements for the entry.
         attr_reader :measurement
 
+        # Get the total amount of memory allocated in the entry.
+        #
+        # @return [Integer]
+        def allocated_memory
+          measurement.memory.allocated
+        end
+
         # Format the metrics for output into an IO.
         #
         # @return [String] the formatted output.

@@ -15,9 +15,14 @@ module Benchmark
       unless block_given?
         fail ConfigurationError, "You did you give a test block to your call to `Benchmark.memory`".freeze
       end
+
       job = Job.new
+
       yield job
+
       job.run
+      job.run_comparison
+      job.full_report
     end
   end
 
