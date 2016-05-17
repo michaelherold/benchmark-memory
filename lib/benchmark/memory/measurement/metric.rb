@@ -6,7 +6,6 @@ module Benchmark
       # Describe the ratio of allocated vs. retained memory in a measurement.
       class Metric
         include Comparable
-        include Helpers
 
         # Instantiate a Metric of allocated vs. retained memory.
         #
@@ -35,23 +34,6 @@ module Benchmark
         # @return [Integer]
         def <=>(other)
           allocated <=> other.allocated
-        end
-
-        # Format the metric for output to an IO.
-        #
-        # @return [String] The formatted metric for output.
-        def to_s
-          [allocated_str, retained_str].join(" - ")
-        end
-
-        private
-
-        def allocated_str
-          format("%s %s", scale(allocated), type)
-        end
-
-        def retained_str
-          format("(%s retained)", scale(retained))
         end
       end
     end

@@ -1,3 +1,6 @@
+require "benchmark/memory/job/io_output/comparison_formatter"
+require "benchmark/memory/job/io_output/entry_formatter"
+
 module Benchmark
   module Memory
     class Job
@@ -14,7 +17,7 @@ module Benchmark
         #
         # @return [void]
         def put_entry(entry)
-          @io.puts entry.body
+          @io.puts EntryFormatter.new(entry)
         end
 
         # Put the comparison onto the output.
@@ -23,7 +26,7 @@ module Benchmark
         def put_comparison(comparison)
           @io.puts
           @io.puts "Comparison:"
-          @io.puts comparison.body
+          @io.puts ComparisonFormatter.new(comparison)
         end
 
         # Put the header onto the output.
