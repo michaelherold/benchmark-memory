@@ -5,8 +5,8 @@ module Benchmark
   module Memory
     class Job
       # Hold a labelled job for later measurement.
-      class Entry
-        # Instantiate a job entry for later measurement.
+      class Task
+        # Instantiate a job task for later measurement.
         #
         # @param label [#to_s] The label for the benchmark.
         # @param action [#call] The code to be measured.

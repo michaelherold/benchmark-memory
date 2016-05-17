@@ -8,10 +8,10 @@ RSpec.describe Benchmark::Memory::Job do
       expect { job.report("riddle me this") }.to raise_error(ArgumentError)
     end
 
-    it "adds an entry to the list of entries in the job" do
+    it "adds a task to the list of tasks in the job" do
       job = Benchmark::Memory::Job.new
 
-      expect { job.report("riddle me that") {} }.to change(job.entries, :count).by(1)
+      expect { job.report("riddle me that") {} }.to change(job.tasks, :count).by(1)
     end
   end
 end
