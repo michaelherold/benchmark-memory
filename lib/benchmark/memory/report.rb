@@ -19,9 +19,11 @@ module Benchmark
       # @param task [Job::Task] The task to report about.
       # @param measurement [Measurement] The measurements from the task.
       #
-      # @return [void]
+      # @return [Entry] the newly created entry.
       def add_entry(task, measurement)
-        entries.push Entry.new(task.label, measurement)
+        entry = Entry.new(task.label, measurement)
+        entries.push(entry)
+        entry
       end
     end
   end
