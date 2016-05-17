@@ -14,4 +14,14 @@ RSpec.describe Benchmark::Memory::Job do
       expect { job.report("riddle me that") {} }.to change(job.tasks, :count).by(1)
     end
   end
+
+  describe "#run" do
+    it "adds an entry to the report for each task" do
+      job = Benchmark::Memory::Job.new
+      job.report("with you") {}
+      job.report("my brown eyed girl") {}
+
+      expect { job.run }.to change(job.full_report.entries, :count).by(2)
+    end
+  end
 end
