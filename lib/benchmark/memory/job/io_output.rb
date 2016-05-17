@@ -10,7 +10,14 @@ module Benchmark
           @io = io
         end
 
-        # Puts the header onto the output
+        # Put the entry onto the output.
+        #
+        # @return [void]
+        def put_entry(entry)
+          @io.puts entry.body
+        end
+
+        # Put the header onto the output
         #
         # @return [void]
         def put_header

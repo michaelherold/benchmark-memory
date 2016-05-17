@@ -43,7 +43,8 @@ module Benchmark
 
         tasks.each do |task|
           measurement = task.call
-          full_report.add_entry(task, measurement)
+          entry = full_report.add_entry(task, measurement)
+          @output.put_entry(entry)
         end
 
         full_report
