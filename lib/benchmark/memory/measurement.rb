@@ -1,3 +1,4 @@
+require "forwardable"
 require "benchmark/memory/measurement/metric"
 
 module Benchmark
