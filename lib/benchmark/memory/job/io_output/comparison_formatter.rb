@@ -29,23 +29,34 @@ module Benchmark
             best, rest = *comparison.entries
             rest = Array(rest)
 
-            output << format("%20s: %10i allocated\n", best.label, best.allocated_memory)
+            add_best_summary(best, output)
 
             rest.each do |entry|
-              output << format("%20s: %10i allocated - ", entry.label, entry.allocated_memory)
-
-              ratio = entry.allocated_memory.to_f / best.allocated_memory.to_f
-              comparison =
-                if ratio.abs > 1
-                  format("%.2fx more", ratio)
-                else
-                  "same"
-                end
-
-              output << comparison
+              add_comparison(entry, best, output)
             end
 
             output.string
+          end
+
+          private
+
+          def add_best_summary(best, output)
+            output << format("%20s: %10i allocated\n", best.label, best.allocated_memory)
+          end
+
+          def add_comparison(entry, best, output)
+            output << format("%20s: %10i allocated - ", entry.label, entry.allocated_memory)
+            output << comparison_between(entry, best)
+          end
+
+          def comparison_between(entry, best)
+            ratio = entry.allocated_memory.to_f / best.allocated_memory.to_f
+
+            if ratio.abs > 1
+              format("%.2fx more", ratio)
+            else
+              "same"
+            end
           end
         end
       end
