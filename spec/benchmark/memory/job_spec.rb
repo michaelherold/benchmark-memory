@@ -48,9 +48,23 @@ RSpec.describe Benchmark::Memory::Job do
     end
   end
 
-  def create_job_and_output
+  describe "#quiet?" do
+    it "prevents any output from being written" do
+      job, output = create_job_and_output(:quiet => true)
+      job.report("with you") {}
+      job.report("my brown eyed girl") {}
+      job.compare!
+
+      job.run
+      job.run_comparison
+
+      expect(output.string).to be_empty
+    end
+  end
+
+  def create_job_and_output(quiet: false)
     output = StringIO.new
-    job = Benchmark::Memory::Job.new(:output => output)
+    job = Benchmark::Memory::Job.new(:output => output, :quiet => quiet)
 
     [job, output]
   end

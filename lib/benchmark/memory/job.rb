@@ -1,5 +1,6 @@
 require "benchmark/memory/job/task"
 require "benchmark/memory/job/io_output"
+require "benchmark/memory/job/null_output"
 require "benchmark/memory/report"
 
 module Benchmark
@@ -9,12 +10,14 @@ module Benchmark
       # Instantiate a job for containing memory performance reports.
       #
       # @param output [#puts] The output to use for showing the job results.
+      # @param quiet [TrueClass, FalseClass] A flag for stopping output.
       #
       # @return [Job]
-      def initialize(output: $stdout)
+      def initialize(output: $stdout, quiet: false)
         @compare = false
         @full_report = Report.new
-        @output = IOOutput.new(output)
+        @quiet = quiet
+        @output = quiet? ? NullOutput.new : IOOutput.new(output)
         @tasks = []
       end
 
@@ -72,6 +75,13 @@ module Benchmark
         if compare? && full_report.comparable?
           @output.put_comparison(full_report.comparison)
         end
+      end
+
+      # Check whether the job is set to quiet.
+      #
+      # @return [TrueClass, FalseClass]
+      def quiet?
+        @quiet
       end
     end
   end
