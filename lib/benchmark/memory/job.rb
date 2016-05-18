@@ -32,7 +32,6 @@ module Benchmark
       # @return [Array<Task>] the measurement tasks to run.
       attr_reader :tasks
 
-      # @return [Boolean] A flag indicating whether results are being held.
       def_delegator :@held_results, :holding?
 
       # Check whether the job should do a comparison.

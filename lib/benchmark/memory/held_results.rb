@@ -91,7 +91,7 @@ module Benchmark
       # Execute a block on the hold file.
       #
       # @param access_mode [String] The mode to use when opening the file.
-      # @param block [Proc] The block to execute on each line of the file.
+      # @param _block [Proc] The block to execute on each line of the file.
       #
       # @return [void]
       def with_hold_file(access_mode = "r", &_block)
