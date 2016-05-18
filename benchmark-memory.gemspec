@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/michaelherold/benchmark-memory"
   spec.license       = "MIT"
 
-  spec.files = %w(CHANGELOG.md LICENSE.md README.md Rakefile)
+  spec.files = %w(CHANGELOG.md CONTRIBUTING.md LICENSE.md README.md Rakefile)
   spec.files += %w(benchmark-memory.gemspec)
   spec.files += Dir["lib/**/*.rb"]
   spec.require_paths = ["lib"]
