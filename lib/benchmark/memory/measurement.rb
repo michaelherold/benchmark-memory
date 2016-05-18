@@ -38,6 +38,12 @@ module Benchmark
       # @return [Array<Metric>] The metrics for the measurement.
       attr_reader :metrics
 
+      # @return [Metric] The object allocation metric.
+      attr_reader :objects
+
+      # @return [Metric] The string allocation metric.
+      attr_reader :strings
+
       # Enumerate through the metrics when enumerating a measurement.
       def_delegator :metrics, :each
 

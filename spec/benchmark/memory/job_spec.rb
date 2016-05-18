@@ -23,6 +23,35 @@ RSpec.describe Benchmark::Memory::Job do
 
       expect { job.run }.to change(job.full_report.entries, :count).by(2)
     end
+
+    context "holding" do
+      it "only executes one task for each call to run" do
+        hold_buffer = StringIO.new
+        job, output = create_job_and_output
+        job.report("with you") {}
+        job.report("my brown eyed girl") {}
+        job.hold!(hold_buffer)
+
+        expect { job.run }.to change(job.full_report.entries, :count).by(1)
+        output_string = output.string
+        expect(output_string).to match(/with you/)
+        expect(output_string).not_to match(/brown eyed girl/)
+        expect(output_string).to match(/Pausing/)
+
+        # Reset for the second run
+        hold_buffer.rewind
+        job, output = create_job_and_output
+        job.report("with you") {}
+        job.report("my brown eyed girl") {}
+        job.hold!(hold_buffer)
+
+        expect { job.run }.to change(job.full_report.entries, :count).by(2)
+        output_string = output.string
+        expect(output_string).not_to match(/with you/)
+        expect(output_string).to match(/brown eyed girl/)
+        expect(output_string).not_to match(/Pausing/)
+      end
+    end
   end
 
   describe "#run_comparison" do

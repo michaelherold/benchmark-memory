@@ -35,6 +35,14 @@ module Benchmark
         def put_header
           @io.puts "Calculating -------------------------------------"
         end
+
+        # Put a notice that the execution is holding for another run.
+        #
+        # @return [void]
+        def put_hold_notice
+          @io.puts
+          @io.puts "Pausing here -- run Ruby again to measure the next benchmark..."
+        end
       end
     end
   end
