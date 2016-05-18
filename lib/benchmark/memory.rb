@@ -9,13 +9,15 @@ module Benchmark
   module Memory
     # Measure memory usage in report blocks.
     #
+    # @param quiet [TrueClass, FalseClass] A flag to toggle benchmark output.
+    #
     # @return [Report]
-    def memory
+    def memory(quiet: false)
       unless block_given?
         fail ConfigurationError, "You did not give a test block to your call to `Benchmark.memory`".freeze
       end
 
-      job = Job.new
+      job = Job.new(:quiet => quiet)
 
       yield job
 
