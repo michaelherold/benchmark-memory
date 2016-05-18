@@ -51,7 +51,7 @@ module Benchmark
 
       # Enable holding results to compare between separate runs.
       #
-      # @param [String, IO] The location to save the held results.
+      # @param held_path [String, IO] The location to save the held results.
       #
       # @return [void]
       def hold!(held_path)

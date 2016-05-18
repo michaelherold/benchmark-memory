@@ -27,7 +27,7 @@ module Benchmark
 
         # Convert a JSON document into an object.
         #
-        # @param hash [Hash] A JSON document hash.
+        # @param _hash [Hash] A JSON document hash.
         #
         # @return [Object]
         # @raise [NotImplementedError] If the inheriting subclass didn't implement.

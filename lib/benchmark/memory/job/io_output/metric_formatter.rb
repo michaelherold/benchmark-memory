@@ -15,7 +15,7 @@ module Benchmark
             @metric = metric
           end
 
-          # @return metric [Metric] The metric to format.
+          # @return [Metric] The metric to format.
           attr_reader :metric
 
           # Format metric to a string to put on the output.
