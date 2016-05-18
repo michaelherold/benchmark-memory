@@ -1,5 +1,4 @@
 require "benchmark/memory/errors"
-require "benchmark/memory/helpers"
 require "benchmark/memory/job"
 require "benchmark/memory/version"
 
@@ -13,7 +12,7 @@ module Benchmark
     # @return [Report]
     def memory
       unless block_given?
-        fail ConfigurationError, "You did you give a test block to your call to `Benchmark.memory`".freeze
+        fail ConfigurationError, "You did not give a test block to your call to `Benchmark.memory`".freeze
       end
 
       job = Job.new
