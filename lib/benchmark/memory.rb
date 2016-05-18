@@ -9,7 +9,7 @@ module Benchmark
   module Memory
     # Measure memory usage in report blocks.
     #
-    # @param quiet [TrueClass, FalseClass] A flag to toggle benchmark output.
+    # @param quiet [Boolean] A flag to toggle benchmark output.
     #
     # @return [Report]
     def memory(quiet: false)

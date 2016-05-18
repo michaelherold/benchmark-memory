@@ -14,7 +14,7 @@ module Benchmark
       # Instantiate a job for containing memory performance reports.
       #
       # @param output [#puts] The output to use for showing the job results.
-      # @param quiet [TrueClass, FalseClass] A flag for stopping output.
+      # @param quiet [Boolean] A flag for stopping output.
       #
       # @return [Job]
       def initialize(output: $stdout, quiet: false)
@@ -37,7 +37,7 @@ module Benchmark
 
       # Check whether the job should do a comparison.
       #
-      # @return [TrueClass, FalseClass]
+      # @return [Boolean]
       def compare?
         @compare
       end
@@ -127,7 +127,7 @@ module Benchmark
 
       # Check whether the job is set to quiet.
       #
-      # @return [TrueClass, FalseClass]
+      # @return [Boolean]
       def quiet?
         @quiet
       end

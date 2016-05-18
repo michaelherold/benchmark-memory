@@ -29,7 +29,7 @@ module Benchmark
 
       # Return true if the report is comparable.
       #
-      # @return [TrueClass, FalseClass]
+      # @return [Boolean]
       def comparable?
         comparison.possible?
       end

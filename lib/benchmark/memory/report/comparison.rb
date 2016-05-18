@@ -15,7 +15,7 @@ module Benchmark
 
         # Check if the comparison is possible
         #
-        # @return [TrueClass, FalseClass]
+        # @return [Boolean]
         def possible?
           entries.size > 1
         end
