@@ -1,5 +1,20 @@
-sudo: false
+cache: bundler
 language: ruby
 rvm:
+  - 2.1.9
+  - 2.2.5
   - 2.3.1
+  - ruby-head
+script: bundle exec rspec
+sudo: false
+
 before_install: gem install bundler -v 1.12.3
+bundler_args: --without development
+
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+
+addons:
+  code_climate:
+    repo_token: 36f3969bdc1e5e821f38411648b9ba4217fa4518c9f58c30f0e9b0d1639b4f19
