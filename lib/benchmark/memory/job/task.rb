@@ -14,7 +14,10 @@ module Benchmark
         # @raise [ArgumentError] if the action does not respond to `#call`.
         def initialize(label, action)
           unless action.respond_to?(:call)
-            fail ArgumentError, "Invalid action (#{@action.inspect} does not respond to call)"
+            fail(
+              ArgumentError,
+              "Invalid action (#{@action.inspect} does not respond to call)"
+            )
           end
 
           @label = label

@@ -78,8 +78,12 @@ module Benchmark
       def load
         return unless holding? && any?
 
-        results = with_hold_file { |f| f.map { |line| EntrySerializer.load(line) } }
-        @results = Hash[results.map { |result| [result.label, result.measurement] }]
+        results = with_hold_file do |file|
+          file.map { |line| EntrySerializer.load(line) }
+        end
+        @results = Hash[results.map do |result|
+          [result.label, result.measurement]
+        end]
       end
 
       private

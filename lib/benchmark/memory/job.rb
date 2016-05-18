@@ -65,7 +65,9 @@ module Benchmark
       #
       # @raise [ArgumentError] if no code block is specified.
       def report(label = "", &block)
-        fail ArgumentError, "You did not specify a block for the item" unless block_given?
+        unless block_given?
+          fail ArgumentError, "You did not specify a block for the item"
+        end
 
         tasks.push Task.new(label, block)
       end

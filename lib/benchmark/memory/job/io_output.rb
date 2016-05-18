@@ -41,7 +41,8 @@ module Benchmark
         # @return [void]
         def put_hold_notice
           @io.puts
-          @io.puts "Pausing here -- run Ruby again to measure the next benchmark..."
+          @io.puts "Pausing here -- run Ruby again to " \
+                   "measure the next benchmark..."
         end
       end
     end

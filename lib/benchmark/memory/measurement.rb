@@ -11,11 +11,24 @@ module Benchmark
 
       # Create a Measurement from a MemoryProfiler::Results object.
       #
-      # @param result [MemoryProfiler::Results] The results of a MemoryProfiler report.
+      # @param result [MemoryProfiler::Results]
+      #   The results of a MemoryProfiler report.
       def self.from_result(result)
-        memory  = Metric.new(:memsize, result.total_allocated_memsize, result.total_retained_memsize)
-        objects = Metric.new(:objects, result.total_allocated, result.total_retained)
-        strings = Metric.new(:strings, result.strings_allocated.size, result.strings_retained.size)
+        memory = Metric.new(
+          :memsize,
+          result.total_allocated_memsize,
+          result.total_retained_memsize
+        )
+        objects = Metric.new(
+          :objects,
+          result.total_allocated,
+          result.total_retained
+        )
+        strings = Metric.new(
+          :strings,
+          result.strings_allocated.size,
+          result.strings_retained.size
+        )
 
         new(:memory => memory, :objects => objects, :strings => strings)
       end

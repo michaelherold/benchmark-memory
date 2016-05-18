@@ -11,7 +11,9 @@ RSpec.describe Benchmark::Memory::Job do
     it "adds a task to the list of tasks in the job" do
       job = create_job
 
-      expect { job.report("riddle me that") {} }.to change(job.tasks, :count).by(1)
+      expect { job.report("riddle me that") {} }.to(
+        change(job.tasks, :count).by(1)
+      )
     end
   end
 

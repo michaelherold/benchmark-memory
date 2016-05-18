@@ -14,14 +14,33 @@ RSpec.describe Benchmark::Memory::Job::IOOutput do
   end
 
   def create_entry
-    Benchmark::Memory::Report::Entry.new("my super cool test", create_measurement)
+    Benchmark::Memory::Report::Entry.new(
+      "my super cool test",
+      create_measurement
+    )
   end
 
   def create_measurement
-    memsize = Benchmark::Memory::Measurement::Metric.new(:memsize, 3_078_619, 1_539_309)
-    objects = Benchmark::Memory::Measurement::Metric.new(:objects, 2_936_123, 0)
-    strings = Benchmark::Memory::Measurement::Metric.new(:strings, 100, 99)
+    memsize = Benchmark::Memory::Measurement::Metric.new(
+      :memsize,
+      3_078_619,
+      1_539_309
+    )
+    objects = Benchmark::Memory::Measurement::Metric.new(
+      :objects,
+      2_936_123,
+      0
+    )
+    strings = Benchmark::Memory::Measurement::Metric.new(
+      :strings,
+      100,
+      99
+    )
 
-    Benchmark::Memory::Measurement.new(:strings => strings, :objects => objects, :memory => memsize)
+    Benchmark::Memory::Measurement.new(
+      :strings => strings,
+      :objects => objects,
+      :memory => memsize
+    )
   end
 end

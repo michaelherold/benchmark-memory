@@ -30,17 +30,25 @@ module Benchmark
         # @param _hash [Hash] A JSON document hash.
         #
         # @return [Object]
-        # @raise [NotImplementedError] If the inheriting subclass didn't implement.
+        # @raise [NotImplementedError]
+        #   If the inheriting subclass didn't implement.
         def load(_hash)
-          fail NotImplementedError, "You must implement a concrete version in a subclass"
+          fail(
+            NotImplementedError,
+            "You must implement a concrete version in a subclass"
+          )
         end
 
         # Convert the object to a Hash.
         #
         # @return [Hash] The object as a Hash.
-        # @raise [NotImplementedError] If the inheriting subclass didn't implement.
+        # @raise [NotImplementedError]
+        #   If the inheriting subclass didn't implement.
         def to_h
-          fail NotImplementedError, "You must implement a concrete version in a subclass"
+          fail(
+            NotImplementedError,
+            "You must implement a concrete version in a subclass"
+          )
         end
 
         # Convert the object to a JSON document.

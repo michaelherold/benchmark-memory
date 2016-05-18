@@ -41,11 +41,11 @@ module Benchmark
           private
 
           def add_best_summary(best, output)
-            output << format("%20s: %10i allocated\n", best.label, best.allocated_memory)
+            output << summary_message("%20s: %10i allocated\n", best)
           end
 
           def add_comparison(entry, best, output)
-            output << format("%20s: %10i allocated - ", entry.label, entry.allocated_memory)
+            output << summary_message("%20s: %10i allocated - ", entry)
             output << comparison_between(entry, best)
           end
 
@@ -57,6 +57,10 @@ module Benchmark
             else
               "same"
             end
+          end
+
+          def summary_message(message, entry)
+            format(message, entry.label, entry.allocated_memory)
           end
         end
       end

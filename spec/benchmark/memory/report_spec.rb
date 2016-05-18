@@ -13,12 +13,18 @@ RSpec.describe Benchmark::Memory::Report do
       task = Benchmark::Memory::Job::Task.new("do nothing", -> {})
       measurement = create_measurement
 
-      expect { report.add_entry(task, measurement) }.to change(report.entries, :count).by(1)
+      expect { report.add_entry(task, measurement) }.to(
+        change(report.entries, :count).by(1)
+      )
     end
   end
 
   def create_measurement
-    metrics = {:memory => create_metric, :objects => create_metric, :strings => create_metric}
+    metrics = {
+      :memory => create_metric,
+      :objects => create_metric,
+      :strings => create_metric,
+    }
     Benchmark::Memory::Measurement.new(metrics)
   end
 

@@ -14,7 +14,10 @@ module Benchmark
     # @return [Report]
     def memory(quiet: false)
       unless block_given?
-        fail ConfigurationError, "You did not give a test block to your call to `Benchmark.memory`".freeze
+        fail(
+          ConfigurationError,
+          "You did not give a test block to your call to `Benchmark.memory`"
+        )
       end
 
       job = Job.new(:quiet => quiet)
