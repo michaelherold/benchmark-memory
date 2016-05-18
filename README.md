@@ -143,23 +143,6 @@ The first invocation of `ruby benchmark_mrr.rb` runs the benchmark in the "origi
 
 When enabling holding, the benchmark writes to the file passed into the `#hold!` method. After you run all of the entries in the benchmark, the benchmark automatically cleans up its log by deleting the file.
 
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-When writing code, you can use the helper application [Guard][guard] to automatically run tests and coverage tools whenever you modify and save a file. This helps to eliminate the tedium of running tests manually and reduces the chance that you will accidentally forget to run the tests. To use Guard, run `bundle exec guard`.
-
-Before committing code, run `rake` to check that the code conforms to the style guidelines of the project, that all of the tests are green (if you're writing a feature; if you're only submitting a failing test, then it does not have to pass!), and that the changes are sufficiently documented.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org][rubygems].
-
-[guard]: http://guardgem.org
-[rubygems]: https://rubygems.org
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/michaelherold/benchmark-memory.
-
 ## Supported Ruby Versions
 
 This library aims to support and is [tested against][travis] the following Ruby versions:
