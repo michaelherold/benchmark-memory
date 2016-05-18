@@ -1,5 +1,6 @@
 module Benchmark
   module Memory
+    # Helper methods for formatting output.
     module Helpers
       # Right-justifies to a length of 20 or adds a line of padding when longer.
       #
