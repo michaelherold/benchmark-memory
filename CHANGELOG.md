@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file. This projec
 
 [semver]: http://semver.org/spec/v2.0.0.html
 
+## [Unreleased][unreleased]
+
+### Added
+
+- Nothing yet.
+
 ## [0.1.1] - 2016-06-10
 
 ### Fixed
