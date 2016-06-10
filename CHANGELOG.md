@@ -6,9 +6,9 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [Unreleased][unreleased]
 
-### Added
+### Fixed
 
-- Nothing yet.
+- Printing comparisons for multiple entries.
 
 ## [0.1.0] - 2016-05-18
 

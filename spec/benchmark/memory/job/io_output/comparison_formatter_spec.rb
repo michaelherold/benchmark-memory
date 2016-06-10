@@ -10,10 +10,14 @@ RSpec.describe Benchmark::Memory::Job::IOOutput::ComparisonFormatter do
     end
 
     it "outputs a comparison of the entries" do
-      comp = comparison([create_high_entry, create_low_entry])
+      entries = [create_high_entry, create_medium_entry, create_low_entry]
+      comp = comparison(entries)
       formatter = described_class.new(comp)
 
-      expect(formatter.to_s).not_to be_empty
+      output = formatter.to_s
+
+      expect(output).not_to be_empty
+      expect(output.split("\n").size).to eq(entries.length)
     end
 
     it "gives a multiplier when entries aren't equal" do
@@ -47,6 +51,13 @@ RSpec.describe Benchmark::Memory::Job::IOOutput::ComparisonFormatter do
     Benchmark::Memory::Report::Entry.new(
       "low",
       create_measurement(2_500, 1_250)
+    )
+  end
+
+  def create_medium_entry
+    Benchmark::Memory::Report::Entry.new(
+      "medium",
+      create_measurement(5_000, 2_500)
     )
   end
 

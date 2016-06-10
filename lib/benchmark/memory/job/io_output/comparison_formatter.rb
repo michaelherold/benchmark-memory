@@ -26,7 +26,7 @@ module Benchmark
             return "" unless comparison.possible?
 
             output = StringIO.new
-            best, rest = *comparison.entries
+            best, *rest = comparison.entries
             rest = Array(rest)
 
             add_best_summary(best, output)
@@ -47,6 +47,7 @@ module Benchmark
           def add_comparison(entry, best, output)
             output << summary_message("%20s: %10i allocated - ", entry)
             output << comparison_between(entry, best)
+            output << "\n"
           end
 
           def comparison_between(entry, best)
