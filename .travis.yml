@@ -1,19 +1,23 @@
 cache: bundler
 language: ruby
 rvm:
-  - 2.1.9
-  - 2.2.5
-  - 2.3.1
+  - 2.1.10
+  - 2.2.6
+  - 2.3.3
   - ruby-head
 script: bundle exec rspec
 sudo: false
 
-before_install: gem install bundler -v 1.12.3
+before_install: gem install bundler -v 1.14.3
 bundler_args: --without development
 
 matrix:
   allow_failures:
     - rvm: ruby-head
+  include:
+    - rvm: 2.4.0
+      after_script:
+        - bundle exec codeclimate-test-reporter
 
 addons:
   code_climate:
