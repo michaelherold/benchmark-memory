@@ -6,9 +6,9 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [Unreleased][unreleased]
 
-### Added
+### Fixed
 
-- Nothing yet.
+- [#4](https://github.com/michaelherold/benchmark-memory/pull/4): Fix a small bug when StringIO wasn't properly required - [@rzane](https://github.com/rzane).
 
 ## [0.1.1] - 2016-06-10
 
