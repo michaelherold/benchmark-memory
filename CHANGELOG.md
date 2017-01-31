@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file. This projec
 
 [semver]: http://semver.org/spec/v2.0.0.html
 
+## [Unreleased][unreleased]
+
+### Added
+
+- Your contribution here.
+
 ## [0.1.2] - 2017-01-30
 
 ### Fixed
@@ -27,3 +33,4 @@ All notable changes to this project will be documented in this file. This projec
 [0.1.2]: https://github.com/michaelherold/benchmark-memory/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/michaelherold/benchmark-memory/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/michaelherold/benchmark-memory/tree/v0.1.0
+[unreleased]: https://github.com/michaelherold/benchmark-memory/compare/v0.1.2...HEAD
