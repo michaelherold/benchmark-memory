@@ -14,16 +14,4 @@ RuboCop::RakeTask.new(:rubocop)
 require "yard/rake/yardoc_task"
 YARD::Rake::YardocTask.new(:yard)
 
-task :mutant do
-  command = [
-    "bundle exec mutant",
-    "--include lib",
-    "--require interactor-contracts",
-    "--use rspec",
-    "Interactor::Contracts*",
-  ].join(" ")
-
-  system command
-end
-
 task :default => [:spec, :rubocop, :yard, :inch]
