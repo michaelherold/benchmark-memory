@@ -1,5 +1,5 @@
-require "benchmark/memory/helpers"
-require "benchmark/memory/job/io_output/metric_formatter"
+require 'benchmark/memory/helpers'
+require 'benchmark/memory/job/io_output/metric_formatter'
 
 module Benchmark
   module Memory
@@ -23,7 +23,7 @@ module Benchmark
           #
           # @return [String]
           def to_s
-            return "" unless comparison.possible?
+            return '' unless comparison.possible?
 
             output = StringIO.new
             best, *rest = comparison.entries
@@ -45,7 +45,7 @@ module Benchmark
           end
 
           def add_comparison(entry, best, output)
-            output << summary_message("%20s: %10i allocated - ", entry)
+            output << summary_message('%20s: %10i allocated - ', entry)
             output << comparison_between(entry, best)
             output << "\n"
           end
@@ -54,9 +54,9 @@ module Benchmark
             ratio = entry.allocated_memory.to_f / best.allocated_memory.to_f
 
             if ratio.abs > 1
-              format("%.2fx more", ratio)
+              format('%.2fx more', ratio)
             else
-              "same"
+              'same'
             end
           end
 

@@ -1,4 +1,4 @@
-require "benchmark/memory/helpers"
+require 'benchmark/memory/helpers'
 
 module Benchmark
   module Memory
@@ -22,7 +22,7 @@ module Benchmark
           #
           # @return [String]
           def to_s
-            [allocated_message, retained_message].join(" ")
+            [allocated_message, retained_message].join(' ')
           end
 
           private
@@ -30,17 +30,17 @@ module Benchmark
           # @return [String] the formated string for allocated memory
           def allocated_message
             format(
-              "%<allocated>s %<type>s",
-              :allocated => scale(metric.allocated),
-              :type => metric.type
+              '%<allocated>s %<type>s',
+              allocated: scale(metric.allocated),
+              type: metric.type
             )
           end
 
           # @return [String] the formated string for retained memory
           def retained_message
             format(
-              "(%<retained>s retained)",
-              :retained => scale(metric.retained)
+              '(%<retained>s retained)',
+              retained: scale(metric.retained)
             )
           end
         end

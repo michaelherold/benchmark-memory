@@ -1,16 +1,16 @@
-require "spec_helper"
+require 'spec_helper'
 
 RSpec.describe Benchmark::Memory::Report do
-  it "is initialized with a blank list of entries" do
+  it 'is initialized with a blank list of entries' do
     report = described_class.new
 
     expect(report.entries).to be_empty
   end
 
-  describe "#add_entry" do
-    it "adds an entry to the list of entries" do
+  describe '#add_entry' do
+    it 'adds an entry to the list of entries' do
       report = described_class.new
-      task = Benchmark::Memory::Job::Task.new("do nothing", -> {})
+      task = Benchmark::Memory::Job::Task.new('do nothing', -> {})
       measurement = create_measurement
 
       expect { report.add_entry(task, measurement) }.to(
@@ -21,9 +21,9 @@ RSpec.describe Benchmark::Memory::Report do
 
   def create_measurement
     metrics = {
-      :memory => create_metric,
-      :objects => create_metric,
-      :strings => create_metric,
+      memory: create_metric,
+      objects: create_metric,
+      strings: create_metric
     }
     Benchmark::Memory::Measurement.new(metrics)
   end

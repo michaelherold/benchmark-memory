@@ -1,6 +1,6 @@
-require "benchmark/memory/held_results/serializer"
-require "benchmark/memory/held_results/metric_serializer"
-require "benchmark/memory/measurement"
+require 'benchmark/memory/held_results/serializer'
+require 'benchmark/memory/held_results/metric_serializer'
+require 'benchmark/memory/measurement'
 
 module Benchmark
   module Memory
@@ -14,9 +14,9 @@ module Benchmark
         # @return [Measurement]
         def load(hash)
           @object = Measurement.new(
-            :memory => MetricSerializer.load(hash["memory"]),
-            :objects => MetricSerializer.load(hash["objects"]),
-            :strings => MetricSerializer.load(hash["strings"])
+            memory: MetricSerializer.load(hash['memory']),
+            objects: MetricSerializer.load(hash['objects']),
+            strings: MetricSerializer.load(hash['strings'])
           )
           self
         end
@@ -26,9 +26,9 @@ module Benchmark
         # @return [Hash] The measurement as a Hash.
         def to_h
           {
-            :memory  => MetricSerializer.new(object.memory).to_h,
-            :objects => MetricSerializer.new(object.objects).to_h,
-            :strings => MetricSerializer.new(object.strings).to_h,
+            memory: MetricSerializer.new(object.memory).to_h,
+            objects: MetricSerializer.new(object.objects).to_h,
+            strings: MetricSerializer.new(object.strings).to_h
           }
         end
       end

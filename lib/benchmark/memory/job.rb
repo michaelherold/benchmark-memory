@@ -1,9 +1,9 @@
-require "forwardable"
-require "benchmark/memory/job/task"
-require "benchmark/memory/job/io_output"
-require "benchmark/memory/job/null_output"
-require "benchmark/memory/held_results"
-require "benchmark/memory/report"
+require 'forwardable'
+require 'benchmark/memory/job/task'
+require 'benchmark/memory/job/io_output'
+require 'benchmark/memory/job/null_output'
+require 'benchmark/memory/held_results'
+require 'benchmark/memory/report'
 
 module Benchmark
   module Memory
@@ -63,9 +63,9 @@ module Benchmark
       # @param block [Proc] Code the measure.
       #
       # @raise [ArgumentError] if no code block is specified.
-      def report(label = "", &block)
+      def report(label = '', &block)
         unless block_given?
-          fail ArgumentError, "You did not specify a block for the item"
+          raise ArgumentError, 'You did not specify a block for the item'
         end
 
         tasks.push Task.new(label, block)
@@ -97,21 +97,9 @@ module Benchmark
       # @return [Boolean] A flag indicating whether to hold or not.
       def run_task(task)
         if @held_results.include?(task)
-          measurement = @held_results[task.label]
-          full_report.add_entry(task, measurement)
-          false
+          run_with_held_results(task)
         else
-          measurement = task.call
-          entry = full_report.add_entry(task, measurement)
-          @output.put_entry(entry)
-
-          if task == tasks.last
-            @held_results.cleanup
-            false
-          else
-            @held_results.add_result(entry)
-            @held_results.holding?
-          end
+          run_without_held_results(task)
         end
       end
 
@@ -119,9 +107,9 @@ module Benchmark
       #
       # @return [void]
       def run_comparison
-        if compare? && full_report.comparable?
-          @output.put_comparison(full_report.comparison)
-        end
+        return unless compare? && full_report.comparable?
+
+        @output.put_comparison(full_report.comparison)
       end
 
       # Check whether the job is set to quiet.
@@ -129,6 +117,28 @@ module Benchmark
       # @return [Boolean]
       def quiet?
         @quiet
+      end
+
+      private
+
+      def run_with_held_results(task)
+        measurement = @held_results[task.label]
+        full_report.add_entry(task, measurement)
+        false
+      end
+
+      def run_without_held_results(task)
+        measurement = task.call
+        entry = full_report.add_entry(task, measurement)
+        @output.put_entry(entry)
+
+        if task == tasks.last
+          @held_results.cleanup
+          false
+        else
+          @held_results.add_result(entry)
+          @held_results.holding?
+        end
       end
     end
   end

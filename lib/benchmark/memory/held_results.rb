@@ -1,5 +1,5 @@
-require "forwardable"
-require "benchmark/memory/held_results/entry_serializer"
+require 'forwardable'
+require 'benchmark/memory/held_results/entry_serializer'
 
 module Benchmark
   module Memory
@@ -30,7 +30,7 @@ module Benchmark
       #
       # @return [void]
       def add_result(entry)
-        with_hold_file("a") do |file|
+        with_hold_file('a') do |file|
           file.write EntrySerializer.new(entry)
           file.write "\n"
         end
@@ -51,16 +51,14 @@ module Benchmark
       #
       # @return [void]
       def cleanup
-        if @path.is_a?(String) && File.exist?(@path)
-          File.delete(@path)
-        end
+        File.delete(@path) if @path.is_a?(String) && File.exist?(@path)
       end
 
       # Check whether to hold results.
       #
       # @return [Boolean]
       def holding?
-        !!@path
+        !!@path # rubocop:disable Style/DoubleNegation
       end
 
       # Check whether an entry has been added to the results.
@@ -94,7 +92,7 @@ module Benchmark
       # @param _block [Proc] The block to execute on each line of the file.
       #
       # @return [void]
-      def with_hold_file(access_mode = "r", &_block)
+      def with_hold_file(access_mode = 'r', &_block)
         return unless @path
 
         if @path.is_a?(String)

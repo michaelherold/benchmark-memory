@@ -1,5 +1,5 @@
-require "benchmark/memory/job/io_output/comparison_formatter"
-require "benchmark/memory/job/io_output/entry_formatter"
+require 'benchmark/memory/job/io_output/comparison_formatter'
+require 'benchmark/memory/job/io_output/entry_formatter'
 
 module Benchmark
   module Memory
@@ -25,7 +25,7 @@ module Benchmark
         # @return [void]
         def put_comparison(comparison)
           @io.puts
-          @io.puts "Comparison:"
+          @io.puts 'Comparison:'
           @io.puts ComparisonFormatter.new(comparison)
         end
 
@@ -33,7 +33,7 @@ module Benchmark
         #
         # @return [void]
         def put_header
-          @io.puts "Calculating -------------------------------------"
+          @io.puts 'Calculating -------------------------------------'
         end
 
         # Put a notice that the execution is holding for another run.
@@ -41,8 +41,8 @@ module Benchmark
         # @return [void]
         def put_hold_notice
           @io.puts
-          @io.puts "Pausing here -- run Ruby again to " \
-                   "measure the next benchmark..."
+          @io.puts 'Pausing here -- run Ruby again to ' \
+                   'measure the next benchmark...'
         end
       end
     end

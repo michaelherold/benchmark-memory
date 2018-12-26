@@ -1,15 +1,15 @@
-require "spec_helper"
+require 'spec_helper'
 
 RSpec.describe Benchmark::Memory::Job::IOOutput::ComparisonFormatter do
-  describe "#to_s" do
-    it "is blank when the comparison is not possible" do
+  describe '#to_s' do
+    it 'is blank when the comparison is not possible' do
       comp = comparison([])
       formatter = described_class.new(comp)
 
       expect(formatter.to_s).to be_empty
     end
 
-    it "outputs a comparison of the entries" do
+    it 'outputs a comparison of the entries' do
       entries = [create_high_entry, create_medium_entry, create_low_entry]
       comp = comparison(entries)
       formatter = described_class.new(comp)
@@ -41,7 +41,7 @@ RSpec.describe Benchmark::Memory::Job::IOOutput::ComparisonFormatter do
 
   def create_high_entry
     Benchmark::Memory::Report::Entry.new(
-      "high",
+      'high',
       create_measurement(10_000, 5_000)
     )
   end
@@ -49,14 +49,14 @@ RSpec.describe Benchmark::Memory::Job::IOOutput::ComparisonFormatter do
 
   def create_low_entry
     Benchmark::Memory::Report::Entry.new(
-      "low",
+      'low',
       create_measurement(2_500, 1_250)
     )
   end
 
   def create_medium_entry
     Benchmark::Memory::Report::Entry.new(
-      "medium",
+      'medium',
       create_measurement(5_000, 2_500)
     )
   end
@@ -79,9 +79,9 @@ RSpec.describe Benchmark::Memory::Job::IOOutput::ComparisonFormatter do
     )
 
     Benchmark::Memory::Measurement.new(
-      :strings => strings,
-      :objects => objects,
-      :memory => memsize
+      strings: strings,
+      objects: objects,
+      memory: memsize
     )
   end
 end

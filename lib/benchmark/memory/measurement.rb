@@ -1,5 +1,5 @@
-require "forwardable"
-require "benchmark/memory/measurement/metric"
+require 'forwardable'
+require 'benchmark/memory/measurement/metric_extractor'
 
 module Benchmark
   module Memory
@@ -14,23 +14,11 @@ module Benchmark
       # @param result [MemoryProfiler::Results]
       #   The results of a MemoryProfiler report.
       def self.from_result(result)
-        memory = Metric.new(
-          :memsize,
-          result.total_allocated_memsize,
-          result.total_retained_memsize
-        )
-        objects = Metric.new(
-          :objects,
-          result.total_allocated,
-          result.total_retained
-        )
-        strings = Metric.new(
-          :strings,
-          result.strings_allocated.size,
-          result.strings_retained.size
-        )
+        memory = MetricExtractor.extract_memory(result)
+        objects = MetricExtractor.extract_objects(result)
+        strings = MetricExtractor.extract_strings(result)
 
-        new(:memory => memory, :objects => objects, :strings => strings)
+        new(memory: memory, objects: objects, strings: strings)
       end
 
       # Instantiate a Measurement of memory usage.

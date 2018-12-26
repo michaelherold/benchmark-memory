@@ -1,6 +1,6 @@
-require "benchmark/memory/held_results/serializer"
-require "benchmark/memory/held_results/measurement_serializer"
-require "benchmark/memory/report/entry"
+require 'benchmark/memory/held_results/serializer'
+require 'benchmark/memory/held_results/measurement_serializer'
+require 'benchmark/memory/report/entry'
 
 module Benchmark
   module Memory
@@ -14,8 +14,8 @@ module Benchmark
         # @return [Report::Entry]
         def load(hash)
           @object = Report::Entry.new(
-            hash["item"],
-            MeasurementSerializer.load(hash["measurement"])
+            hash['item'],
+            MeasurementSerializer.load(hash['measurement'])
           )
           self
         end
@@ -25,8 +25,8 @@ module Benchmark
         # @return [Hash] The entry as a Hash.
         def to_h
           {
-            :item        => object.label,
-            :measurement => MeasurementSerializer.new(object.measurement).to_h,
+            item: object.label,
+            measurement: MeasurementSerializer.new(object.measurement).to_h
           }
         end
       end

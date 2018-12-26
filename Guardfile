@@ -1,14 +1,14 @@
 guard :bundler do
-  watch("Gemfile")
-  watch("interactor-contracts.gemspec")
+  watch('Gemfile')
+  watch('interactor-contracts.gemspec')
 end
 
 guard :inch do
   watch(/.+\.rb/)
 end
 
-guard :rspec, :cmd => "bundle exec rspec" do
-  watch("spec/spec_helper.rb") { "spec" }
+guard :rspec, cmd: 'bundle exec rspec' do
+  watch('spec/spec_helper.rb') { 'spec' }
 
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$}) { |m| "spec/#{m[1]}_spec.rb" }

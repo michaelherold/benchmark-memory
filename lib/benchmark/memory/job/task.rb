@@ -1,5 +1,5 @@
-require "memory_profiler"
-require "benchmark/memory/measurement"
+require 'memory_profiler'
+require 'benchmark/memory/measurement'
 
 module Benchmark
   module Memory
@@ -14,7 +14,7 @@ module Benchmark
         # @raise [ArgumentError] if the action does not respond to `#call`.
         def initialize(label, action)
           unless action.respond_to?(:call)
-            fail(
+            raise(
               ArgumentError,
               "Invalid action (#{@action.inspect} does not respond to call)"
             )

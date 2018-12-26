@@ -1,1 +1,1 @@
-require "benchmark/memory"
+require 'benchmark/memory'
