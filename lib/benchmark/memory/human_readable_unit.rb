@@ -1,3 +1,5 @@
+require 'delegate'
+
 module Benchmark
   module Memory
     # Transforms raw numbers into a human-readable scale and suffix
