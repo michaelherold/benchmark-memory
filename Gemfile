@@ -12,7 +12,7 @@ group :development do
   gem "mutant-rspec"
   gem "rake", "~> 10"
   gem "rubocop", "0.40.0"
-  gem "yard", "~> 0.8"
+  gem "yard", "~> 0.9.11"
 
   group :test do
     gem "pry"
