@@ -9,7 +9,7 @@ AllCops:
     - "db/schema.rb"
   TargetRubyVersion: 2.1
 
-Style/AccessorMethodName:
+Naming/AccessorMethodName:
   Description: Check the naming of accessor methods for get_/set_.
   Enabled: false
 
@@ -38,7 +38,7 @@ Style/Documentation:
   Description: Document classes and non-namespace modules.
   Enabled: false
 
-Style/DotPosition:
+Layout/DotPosition:
   Description: Checks the position of the dot in multi-line method calls.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#consistent-multi-line-chains
   Enabled: true
@@ -61,11 +61,12 @@ Style/EmptyLiteral:
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#literal-array-hash
   Enabled: false
 
-Style/FileName:
+Naming/FileName:
   Description: Use snake_case for source file names.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#snake-case-files
   Enabled: true
-  Exclude: []
+  Exclude:
+    - lib/benchmark-memory.rb
 
 Style/GuardClause:
   Description: Check for conditionals that can be replaced with guard clauses
@@ -86,7 +87,6 @@ Style/IfUnlessModifier:
   Description: Favor modifier if/unless usage when you have a single-line body.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#if-as-a-modifier
   Enabled: false
-  MaxLineLength: 80
 
 Style/InlineComment:
   Description: Avoid inline comments.
@@ -126,7 +126,7 @@ Style/PerlBackrefs:
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#no-perl-regexp-last-matchers
   Enabled: false
 
-Style/PredicateName:
+Naming/PredicateName:
   Description: Check the names of predicate methods.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#bool-methods-qmark
   Enabled: true
@@ -182,7 +182,7 @@ Style/SingleLineMethods:
   Enabled: false
   AllowIfMethodIsEmpty: true
 
-Style/SpaceInsideHashLiteralBraces:
+Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
   EnforcedStyleForEmptyBraces: no_space
   SupportedStyles:
@@ -217,9 +217,6 @@ Style/TrailingCommaInLiteral:
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#no-trailing-array-commas
   Enabled: true
   EnforcedStyleForMultiline: comma
-  SupportedStyles:
-  - comma
-  - no_comma
 
 Style/VariableInterpolation:
   Description: Do not interpolate global, instance and class variables directly in
@@ -247,10 +244,6 @@ Lint/HandleExceptions:
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#dont-hide-exceptions
   Enabled: false
 
-Lint/LiteralInCondition:
-  Description: Checks of literals used in conditions.
-  Enabled: false
-
 Lint/LiteralInInterpolation:
   Description: Checks for literals used in interpolation.
   Enabled: false
@@ -260,6 +253,10 @@ Metrics/AbcSize:
     conditions.
   Enabled: false
   Max: 15
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*.rb
 
 Metrics/ClassLength:
   Description: Avoid classes longer than 100 lines of code.

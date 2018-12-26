@@ -14,4 +14,4 @@ RuboCop::RakeTask.new(:rubocop)
 require "yard/rake/yardoc_task"
 YARD::Rake::YardocTask.new(:yard)
 
-task :default => [:spec, :rubocop, :yard, :inch]
+task :default => %i(spec rubocop yard inch)

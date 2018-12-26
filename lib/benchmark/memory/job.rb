@@ -99,7 +99,7 @@ module Benchmark
         if @held_results.include?(task)
           measurement = @held_results[task.label]
           full_report.add_entry(task, measurement)
-          return false
+          false
         else
           measurement = task.call
           entry = full_report.add_entry(task, measurement)

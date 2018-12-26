@@ -6,20 +6,17 @@ module Benchmark
         # Swallow entry output.
         #
         # @return [void]
-        def put_entry(entry)
-        end
+        def put_entry(entry); end
 
         # Swallow comparison output.
         #
         # @return [void]
-        def put_comparison(comparison)
-        end
+        def put_comparison(comparison); end
 
         # Swallow header output.
         #
         # @return [void]
-        def put_header
-        end
+        def put_header; end
       end
     end
   end

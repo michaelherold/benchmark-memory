@@ -27,7 +27,7 @@ module Benchmark
             output = StringIO.new
             output << rjust(entry.label)
             entry.measurement.each_with_index.map do |metric, index|
-              output << " " * 20 unless index == 0
+              output << " " * 20 unless index.zero?
               output << MetricFormatter.new(metric)
               output << "\n"
             end

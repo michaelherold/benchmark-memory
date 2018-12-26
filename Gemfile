@@ -10,7 +10,7 @@ group :development do
   gem "guard-rubocop"
   gem "inch"
   gem "rake", "~> 10"
-  gem "rubocop", "0.40.0"
+  gem "rubocop", "0.52.1"
   gem "yard", "~> 0.9.11"
 
   group :test do

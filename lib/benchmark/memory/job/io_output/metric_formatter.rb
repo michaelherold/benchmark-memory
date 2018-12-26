@@ -22,10 +22,26 @@ module Benchmark
           #
           # @return [String]
           def to_s
-            [
-              format("%s %s", scale(metric.allocated), metric.type),
-              format("(%s retained)", scale(metric.retained)),
-            ].join(" ")
+            [allocated_message, retained_message].join(" ")
+          end
+
+          private
+
+          # @return [String] the formated string for allocated memory
+          def allocated_message
+            format(
+              "%<allocated>s %<type>s",
+              :allocated => scale(metric.allocated),
+              :type => metric.type
+            )
+          end
+
+          # @return [String] the formated string for retained memory
+          def retained_message
+            format(
+              "(%<retained>s retained)",
+              :retained => scale(metric.retained)
+            )
           end
         end
       end
