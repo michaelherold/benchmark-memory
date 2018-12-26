@@ -1,37 +1,37 @@
-require "spec_helper"
+require 'spec_helper'
 
 RSpec.describe Benchmark::Memory::Job do
-  describe "#report" do
-    it "raises an ArgumentError when no block is specified" do
+  describe '#report' do
+    it 'raises an ArgumentError when no block is specified' do
       job = create_job
 
-      expect { job.report("riddle me this") }.to raise_error(ArgumentError)
+      expect { job.report('riddle me this') }.to raise_error(ArgumentError)
     end
 
-    it "adds a task to the list of tasks in the job" do
+    it 'adds a task to the list of tasks in the job' do
       job = create_job
 
-      expect { job.report("riddle me that") {} }.to(
+      expect { job.report('riddle me that') {} }.to(
         change(job.tasks, :count).by(1)
       )
     end
   end
 
-  describe "#run" do
-    it "adds an entry to the report for each task" do
+  describe '#run' do
+    it 'adds an entry to the report for each task' do
       job = create_job
-      job.report("with you") {}
-      job.report("my brown eyed girl") {}
+      job.report('with you') {}
+      job.report('my brown eyed girl') {}
 
       expect { job.run }.to change(job.full_report.entries, :count).by(2)
     end
 
-    context "holding" do
-      it "only executes one task for each call to run" do
+    context 'holding' do
+      it 'only executes one task for each call to run' do
         hold_buffer = StringIO.new
         job, output = create_job_and_output
-        job.report("with you") {}
-        job.report("my brown eyed girl") {}
+        job.report('with you') {}
+        job.report('my brown eyed girl') {}
         job.hold!(hold_buffer)
 
         expect { job.run }.to change(job.full_report.entries, :count).by(1)
@@ -43,8 +43,8 @@ RSpec.describe Benchmark::Memory::Job do
         # Reset for the second run
         hold_buffer.rewind
         job, output = create_job_and_output
-        job.report("with you") {}
-        job.report("my brown eyed girl") {}
+        job.report('with you') {}
+        job.report('my brown eyed girl') {}
         job.hold!(hold_buffer)
 
         expect { job.run }.to change(job.full_report.entries, :count).by(2)
@@ -56,8 +56,8 @@ RSpec.describe Benchmark::Memory::Job do
     end
   end
 
-  describe "#run_comparison" do
-    it "does not run if there are no entries" do
+  describe '#run_comparison' do
+    it 'does not run if there are no entries' do
       job, output = create_job_and_output
 
       job.run
@@ -66,10 +66,10 @@ RSpec.describe Benchmark::Memory::Job do
       expect(output.string).not_to match(/Comparison/)
     end
 
-    it "runs when there are entries and the job is configured to compare" do
+    it 'runs when there are entries and the job is configured to compare' do
       job, output = create_job_and_output
-      job.report("with you") {}
-      job.report("my brown eyed girl") {}
+      job.report('with you') {}
+      job.report('my brown eyed girl') {}
       job.compare!
 
       job.run
@@ -79,11 +79,11 @@ RSpec.describe Benchmark::Memory::Job do
     end
   end
 
-  describe "#quiet?" do
-    it "prevents any output from being written" do
-      job, output = create_job_and_output(:quiet => true)
-      job.report("with you") {}
-      job.report("my brown eyed girl") {}
+  describe '#quiet?' do
+    it 'prevents any output from being written' do
+      job, output = create_job_and_output(quiet: true)
+      job.report('with you') {}
+      job.report('my brown eyed girl') {}
       job.compare!
 
       job.run
@@ -95,7 +95,7 @@ RSpec.describe Benchmark::Memory::Job do
 
   def create_job_and_output(quiet: false)
     output = StringIO.new
-    job = Benchmark::Memory::Job.new(:output => output, :quiet => quiet)
+    job = Benchmark::Memory::Job.new(output: output, quiet: quiet)
 
     [job, output]
   end

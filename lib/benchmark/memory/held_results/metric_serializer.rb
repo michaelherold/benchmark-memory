@@ -1,5 +1,5 @@
-require "benchmark/memory/held_results/serializer"
-require "benchmark/memory/measurement/metric"
+require 'benchmark/memory/held_results/serializer'
+require 'benchmark/memory/measurement/metric'
 
 module Benchmark
   module Memory
@@ -14,9 +14,9 @@ module Benchmark
         #
         def load(hash)
           @object = Measurement::Metric.new(
-            hash["type"],
-            hash["allocated"],
-            hash["retained"]
+            hash['type'],
+            hash['allocated'],
+            hash['retained']
           )
           self
         end
@@ -26,9 +26,9 @@ module Benchmark
         # @return [Hash] The metric as a Hash.
         def to_h
           {
-            :allocated => object.allocated,
-            :retained  => object.retained,
-            :type      => object.type,
+            allocated: object.allocated,
+            retained: object.retained,
+            type: object.type
           }
         end
       end

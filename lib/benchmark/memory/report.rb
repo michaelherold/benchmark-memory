@@ -1,5 +1,5 @@
-require "benchmark/memory/report/comparison"
-require "benchmark/memory/report/entry"
+require 'benchmark/memory/report/comparison'
+require 'benchmark/memory/report/entry'
 
 module Benchmark
   module Memory

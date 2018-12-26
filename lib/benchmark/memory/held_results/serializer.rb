@@ -1,4 +1,4 @@
-require "json"
+require 'json'
 
 module Benchmark
   module Memory
@@ -33,9 +33,9 @@ module Benchmark
         # @raise [NotImplementedError]
         #   If the inheriting subclass didn't implement.
         def load(_hash)
-          fail(
+          raise(
             NotImplementedError,
-            "You must implement a concrete version in a subclass"
+            'You must implement a concrete version in a subclass'
           )
         end
 
@@ -45,9 +45,9 @@ module Benchmark
         # @raise [NotImplementedError]
         #   If the inheriting subclass didn't implement.
         def to_h
-          fail(
+          raise(
             NotImplementedError,
-            "You must implement a concrete version in a subclass"
+            'You must implement a concrete version in a subclass'
           )
         end
 
@@ -57,7 +57,7 @@ module Benchmark
         def to_json
           JSON.generate(to_h)
         end
-        alias_method :to_s, :to_json
+        alias to_s to_json
       end
     end
   end

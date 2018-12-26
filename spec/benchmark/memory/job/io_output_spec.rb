@@ -1,8 +1,8 @@
-require "spec_helper"
+require 'spec_helper'
 
 RSpec.describe Benchmark::Memory::Job::IOOutput do
-  describe "#put_entry" do
-    it "outputs onto the passed IO" do
+  describe '#put_entry' do
+    it 'outputs onto the passed IO' do
       entry = create_entry
       io = StringIO.new
       output = described_class.new(io)
@@ -15,7 +15,7 @@ RSpec.describe Benchmark::Memory::Job::IOOutput do
 
   def create_entry
     Benchmark::Memory::Report::Entry.new(
-      "my super cool test",
+      'my super cool test',
       create_measurement
     )
   end
@@ -38,9 +38,9 @@ RSpec.describe Benchmark::Memory::Job::IOOutput do
     )
 
     Benchmark::Memory::Measurement.new(
-      :strings => strings,
-      :objects => objects,
-      :memory => memsize
+      strings: strings,
+      objects: objects,
+      memory: memsize
     )
   end
 end

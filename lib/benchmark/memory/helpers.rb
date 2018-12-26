@@ -1,3 +1,5 @@
+require 'benchmark/memory/human_readable_unit'
+
 module Benchmark
   module Memory
     # Helper methods for formatting output.
@@ -23,22 +25,9 @@ module Benchmark
       #
       # @return [String] The scaled value.
       def scale(value)
-        scale = Math.log10(value)
-        scale = 0 if scale.infinite?
-        scale = (scale / 3).to_i
-        suffix =
-          case scale
-          when 1 then "k"
-          when 2 then "M"
-          when 3 then "B"
-          when 4 then "T"
-          when 5 then "Q"
-          else
-            scale = 0
-            " "
-          end
+        value = HumanReadableUnit.new(value)
 
-        format("%10.3f#{suffix}", value.to_f / (1000**scale))
+        format("%10.3f#{value.unit}", value.to_f / (1000**value.scale))
       end
       module_function :scale
     end

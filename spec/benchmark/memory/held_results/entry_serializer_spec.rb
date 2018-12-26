@@ -1,8 +1,8 @@
-require "spec_helper"
+require 'spec_helper'
 
 RSpec.describe Benchmark::Memory::HeldResults::EntrySerializer do
-  describe ".load" do
-    it "converts JSON documents into entries" do
+  describe '.load' do
+    it 'converts JSON documents into entries' do
       document =
         '{"item":"my super cool test",' \
         '"measurement":' \
@@ -18,8 +18,8 @@ RSpec.describe Benchmark::Memory::HeldResults::EntrySerializer do
     end
   end
 
-  describe "#to_s" do
-    it "converts the entry into a JSON document" do
+  describe '#to_s' do
+    it 'converts the entry into a JSON document' do
       result = described_class.new(create_entry).to_s
 
       expected_result =
@@ -36,7 +36,7 @@ RSpec.describe Benchmark::Memory::HeldResults::EntrySerializer do
 
   def create_entry
     Benchmark::Memory::Report::Entry.new(
-      "my super cool test",
+      'my super cool test',
       create_measurement
     )
   end
@@ -59,9 +59,9 @@ RSpec.describe Benchmark::Memory::HeldResults::EntrySerializer do
     )
 
     Benchmark::Memory::Measurement.new(
-      :strings => strings,
-      :objects => objects,
-      :memory => memsize
+      strings: strings,
+      objects: objects,
+      memory: memsize
     )
   end
 end

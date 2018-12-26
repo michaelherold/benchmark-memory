@@ -1,4 +1,4 @@
-require "benchmark/memory/helpers"
+require 'benchmark/memory/helpers'
 
 module Benchmark
   module Memory

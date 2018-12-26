@@ -1,8 +1,8 @@
-require "spec_helper"
+require 'spec_helper'
 
 RSpec.describe Benchmark::Memory::Report::Comparison do
-  describe "#entries" do
-    it "is sorted from smallest allocation to largest" do
+  describe '#entries' do
+    it 'is sorted from smallest allocation to largest' do
       high_entry = create_high_entry
       low_entry = create_low_entry
 
@@ -14,7 +14,7 @@ RSpec.describe Benchmark::Memory::Report::Comparison do
 
   def create_high_entry
     Benchmark::Memory::Report::Entry.new(
-      "high",
+      'high',
       create_measurement(10_000, 5_000)
     )
   end
@@ -22,7 +22,7 @@ RSpec.describe Benchmark::Memory::Report::Comparison do
 
   def create_low_entry
     Benchmark::Memory::Report::Entry.new(
-      "low",
+      'low',
       create_measurement(2_500, 1_250)
     )
   end
@@ -45,9 +45,9 @@ RSpec.describe Benchmark::Memory::Report::Comparison do
     )
 
     Benchmark::Memory::Measurement.new(
-      :strings => strings,
-      :objects => objects,
-      :memory => memsize
+      strings: strings,
+      objects: objects,
+      memory: memsize
     )
   end
 end

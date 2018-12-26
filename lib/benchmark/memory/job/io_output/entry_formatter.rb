@@ -1,6 +1,6 @@
-require "stringio"
-require "benchmark/memory/helpers"
-require "benchmark/memory/job/io_output/metric_formatter"
+require 'stringio'
+require 'benchmark/memory/helpers'
+require 'benchmark/memory/job/io_output/metric_formatter'
 
 module Benchmark
   module Memory
@@ -26,11 +26,14 @@ module Benchmark
           def to_s
             output = StringIO.new
             output << rjust(entry.label)
-            entry.measurement.each_with_index.map do |metric, index|
-              output << " " * 20 unless index == 0
-              output << MetricFormatter.new(metric)
-              output << "\n"
+
+            first, *rest = *entry.measurement
+
+            output << "#{MetricFormatter.new(first)}\n"
+            rest.each do |metric|
+              output << "#{' ' * 20}#{MetricFormatter.new(metric)}\n"
             end
+
             output.string
           end
         end

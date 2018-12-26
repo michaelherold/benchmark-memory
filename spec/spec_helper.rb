@@ -1,14 +1,14 @@
-if ENV["COVERAGE"] || ENV["CI"]
-  require "simplecov"
+if ENV['COVERAGE'] || ENV['CI']
+  require 'simplecov'
 
   SimpleCov.start do
-    add_filter "/spec/"
+    add_filter '/spec/'
   end
 end
 
-require "benchmark/memory"
-require "pry"
-require "rspec"
+require 'benchmark/memory'
+require 'pry'
+require 'rspec'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
@@ -23,9 +23,9 @@ RSpec.configure do |config|
   config.filter_run :focus
   config.run_all_when_everything_filtered = true
   config.disable_monkey_patching!
-  config.default_formatter = "doc" if config.files_to_run.one?
+  config.default_formatter = 'doc' if config.files_to_run.one?
 
-  config.profile_examples = 10 if ENV["PROFILE"]
+  config.profile_examples = 10 if ENV['PROFILE']
 
   config.order = :random
   Kernel.srand config.seed

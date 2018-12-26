@@ -1,6 +1,6 @@
-require "benchmark/memory/errors"
-require "benchmark/memory/job"
-require "benchmark/memory/version"
+require 'benchmark/memory/errors'
+require 'benchmark/memory/job'
+require 'benchmark/memory/version'
 
 # Performance benchmarking library
 module Benchmark
@@ -13,14 +13,9 @@ module Benchmark
     #
     # @return [Report]
     def memory(quiet: false)
-      unless block_given?
-        fail(
-          ConfigurationError,
-          "You did not give a test block to your call to `Benchmark.memory`"
-        )
-      end
+      raise ConfigurationError unless block_given?
 
-      job = Job.new(:quiet => quiet)
+      job = Job.new(quiet: quiet)
 
       yield job
 
