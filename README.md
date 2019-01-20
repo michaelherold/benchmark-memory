@@ -12,6 +12,23 @@ benchmark-memory is a tool that helps you to benchmark the memory usage of diffe
 
 [memory_profiler]: https://github.com/SamSaffron/memory_profiler
 
+<!-- Tocer[start]: Auto-generated, don't remove. -->
+
+## Table of Contents
+
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Options](#options)
+    - [Suppress all output (Quiet Mode)](#suppress-all-output-quiet-mode)
+    - [Enable comparison](#enable-comparison)
+    - [Hold results between invocations](#hold-results-between-invocations)
+  - [Supported Ruby Versions](#supported-ruby-versions)
+  - [Versioning](#versioning)
+  - [Acknowledgments](#acknowledgments)
+  - [License](#license)
+
+<!-- Tocer[finish]: Auto-generated, don't remove. -->
+
 ## Installation
 
 Add this line to your application's Gemfile:
