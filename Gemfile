@@ -9,7 +9,7 @@ group :development do
   gem 'guard-rspec', '~> 4.6'
   gem 'guard-rubocop'
   gem 'inch'
-  gem 'rake', '~> 10'
+  gem 'rake', '>= 12.3.3'
   gem 'rubocop', '0.52.1'
   gem 'yard', '~> 0.9.11'
 
