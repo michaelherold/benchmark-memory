@@ -9,7 +9,6 @@ rvm:
 script: bundle exec rspec
 sudo: false
 
-before_install: gem install bundler -v 1.14.3
 bundler_args: --without development
 
 matrix:
