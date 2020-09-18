@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'stringio'
 require 'benchmark/memory/helpers'
 require 'benchmark/memory/job/io_output/metric_formatter'

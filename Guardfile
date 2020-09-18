@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 guard :bundler do
   watch('Gemfile')
   watch('interactor-contracts.gemspec')

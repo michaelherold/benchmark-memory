@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'benchmark/memory/errors'
 require 'benchmark/memory/job'
 require 'benchmark/memory/version'

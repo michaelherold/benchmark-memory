@@ -1,4 +1,6 @@
-require File.expand_path('../lib/benchmark/memory/version', __FILE__)
+# frozen_string_literal: true
+
+require File.expand_path('lib/benchmark/memory/version', __dir__)
 
 Gem::Specification.new do |spec|
   spec.name          = 'benchmark-memory'
@@ -6,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Michael Herold']
   spec.email         = ['michael.j.herold@gmail.com']
 
-  spec.summary       = 'Benchmark-style memory profiling for Ruby 2.1+'
+  spec.summary       = 'Benchmark-style memory profiling.'
   spec.description   = spec.summary
   spec.homepage      = 'https://github.com/michaelherold/benchmark-memory'
   spec.license       = 'MIT'
@@ -16,5 +18,6 @@ Gem::Specification.new do |spec|
   spec.files += Dir['lib/**/*.rb']
   spec.require_paths = ['lib']
 
+  spec.required_ruby_version = '>= 2.4'
   spec.add_dependency 'memory_profiler', '~> 0.9'
 end

@@ -1,13 +1,8 @@
 AllCops:
-  Include:
-    - "Gemfile"
-    - "Guardfile"
-    - "Rakefile"
-    - "*.gemspec"
   Exclude:
     - "vendor/**/*"
     - "db/schema.rb"
-  TargetRubyVersion: 2.1
+  TargetRubyVersion: 2.4
 
 Naming/FileName:
   Description: Use snake_case for source file names.
@@ -23,3 +18,9 @@ Metrics/BlockLength:
 Metrics/MethodLength:
   Exclude:
     - spec/**/*.rb
+
+# TODO: don't know how to fix, false positive?
+# https://github.com/rubocop-hq/rubocop/issues/5953
+Style/AccessModifierDeclarations:
+  Exclude:
+    - lib/benchmark/memory/helpers.rb

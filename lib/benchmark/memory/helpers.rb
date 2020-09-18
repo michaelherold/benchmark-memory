@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'benchmark/memory/human_readable_unit'
 
 module Benchmark
@@ -29,6 +31,7 @@ module Benchmark
 
         format("%10.3f#{value.unit}", value.to_f / (1000**value.scale))
       end
+
       module_function :scale
     end
   end

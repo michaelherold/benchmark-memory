@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'forwardable'
 require 'benchmark/memory/measurement/metric_extractor'
 

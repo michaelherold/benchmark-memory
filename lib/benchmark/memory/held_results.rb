@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'forwardable'
 require 'benchmark/memory/held_results/entry_serializer'
 
@@ -43,7 +45,7 @@ module Benchmark
         if @path.is_a?(String)
           File.exist?(@path)
         else
-          @path.size > 0 # rubocop:disable Style/ZeroLengthPredicate
+          @path.size.positive?
         end
       end
 
@@ -58,7 +60,7 @@ module Benchmark
       #
       # @return [Boolean]
       def holding?
-        !!@path # rubocop:disable Style/DoubleNegation
+        !!@path
       end
 
       # Check whether an entry has been added to the results.

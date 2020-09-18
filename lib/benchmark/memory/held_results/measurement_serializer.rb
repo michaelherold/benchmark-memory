@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'benchmark/memory/held_results/serializer'
 require 'benchmark/memory/held_results/metric_serializer'
 require 'benchmark/memory/measurement'
