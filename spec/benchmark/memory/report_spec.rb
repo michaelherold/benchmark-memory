@@ -20,12 +20,11 @@ RSpec.describe Benchmark::Memory::Report do
   end
 
   def create_measurement
-    metrics = {
+    Benchmark::Memory::Measurement.new(
       memory: create_metric,
       objects: create_metric,
       strings: create_metric
-    }
-    Benchmark::Memory::Measurement.new(metrics)
+    )
   end
 
   def create_metric
