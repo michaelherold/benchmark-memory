@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'forwardable'
 require 'benchmark/memory/held_results/entry_serializer'
 
@@ -43,7 +45,7 @@ module Benchmark
         if @path.is_a?(String)
           File.exist?(@path)
         else
-          @path.size > 0 # rubocop:disable Style/ZeroLengthPredicate
+          @path.size.positive?
         end
       end
 
@@ -58,7 +60,7 @@ module Benchmark
       #
       # @return [Boolean]
       def holding?
-        !!@path # rubocop:disable Style/DoubleNegation
+        !!@path
       end
 
       # Check whether an entry has been added to the results.
@@ -92,13 +94,11 @@ module Benchmark
       # @param _block [Proc] The block to execute on each line of the file.
       #
       # @return [void]
-      def with_hold_file(access_mode = 'r', &_block)
+      def with_hold_file(access_mode = 'r', &block)
         return unless @path
 
         if @path.is_a?(String)
-          File.open(@path, access_mode) do |f|
-            yield f
-          end
+          File.open(@path, access_mode, &block)
         else
           yield @path
         end

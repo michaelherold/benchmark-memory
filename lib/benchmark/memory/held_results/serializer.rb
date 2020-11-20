@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'json'
 
 module Benchmark
@@ -54,8 +56,8 @@ module Benchmark
         # Convert the object to a JSON document.
         #
         # @return [String] The object as a JSON document.
-        def to_json
-          JSON.generate(to_h)
+        def to_json(*args)
+          JSON.generate(to_h, *args)
         end
         alias to_s to_json
       end

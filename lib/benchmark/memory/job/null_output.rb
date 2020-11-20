@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Benchmark
   module Memory
     class Job

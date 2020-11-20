@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'forwardable'
 require 'benchmark/memory/job/task'
 require 'benchmark/memory/job/io_output'
@@ -64,9 +66,7 @@ module Benchmark
       #
       # @raise [ArgumentError] if no code block is specified.
       def report(label = '', &block)
-        unless block_given?
-          raise ArgumentError, 'You did not specify a block for the item'
-        end
+        raise ArgumentError, 'You did not specify a block for the item' unless block_given?
 
         tasks.push Task.new(label, block)
       end

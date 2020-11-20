@@ -1,16 +1,11 @@
+# frozen_string_literal: true
+
 require 'delegate'
 
 module Benchmark
   module Memory
     # Transforms raw numbers into a human-readable scale and suffix
     class HumanReadableUnit < SimpleDelegator
-      # Instantiates a HumanReadableUnit from a numeric value
-      #
-      # @param value [Numeric] the value make human-readable
-      def initialize(value)
-        super(value)
-      end
-
       # @return [Integer] the exponential scale of the value
       def scale
         scale = Math.log10(__getobj__)
