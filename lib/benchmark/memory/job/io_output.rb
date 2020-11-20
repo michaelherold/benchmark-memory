@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'benchmark/memory/job/io_output/comparison_formatter'
 require 'benchmark/memory/job/io_output/entry_formatter'
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 gemspec
@@ -10,7 +12,7 @@ group :development do
   gem 'guard-rubocop'
   gem 'inch'
   gem 'rake', '>= 12.3.3'
-  gem 'rubocop', '0.52.1'
+  gem 'rubocop', '0.91.0'
   gem 'yard', '~> 0.9.11'
 
   group :test do

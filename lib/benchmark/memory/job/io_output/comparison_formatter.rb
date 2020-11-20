@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'benchmark/memory/helpers'
 require 'benchmark/memory/job/io_output/metric_formatter'
 
@@ -51,10 +53,10 @@ module Benchmark
           end
 
           def comparison_between(entry, best)
-            ratio = entry.allocated_memory.to_f / best.allocated_memory.to_f
+            ratio = entry.allocated_memory.to_f / best.allocated_memory
 
             if ratio.abs > 1
-              format('%.2fx more', ratio)
+              format('%<ratio>.2fx more', ratio: ratio)
             else
               'same'
             end
