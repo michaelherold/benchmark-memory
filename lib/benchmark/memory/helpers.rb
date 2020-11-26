@@ -21,6 +21,8 @@ module Benchmark
         end
       end
 
+      module_function
+
       # Scale a value into human-understandable terms.
       #
       # @param value [Integer, Float] The value to scale.
@@ -31,7 +33,6 @@ module Benchmark
 
         format("%10.3f#{value.unit}", value.to_f / (1000**value.scale))
       end
-      module_function :scale # rubocop:disable Style/AccessModifierDeclarations
     end
   end
 end
