@@ -5,6 +5,7 @@ inherit_mode:
 
 AllCops:
   TargetRubyVersion: 2.4
+  NewCops: enable
 
 Naming/FileName:
   Exclude:
