@@ -64,26 +64,25 @@ RSpec.describe Benchmark::Memory::Job::IOOutput::ComparisonFormatter do
   end
 
   def create_measurement(allocated, retained)
-    memsize = Benchmark::Memory::Measurement::Metric.new(
-      :memsize,
-      allocated,
-      retained
-    )
-    objects = Benchmark::Memory::Measurement::Metric.new(
-      :objects,
-      2_936_123,
-      0
-    )
-    strings = Benchmark::Memory::Measurement::Metric.new(
-      :strings,
-      100,
-      99
-    )
-
     Benchmark::Memory::Measurement.new(
-      strings: strings,
-      objects: objects,
-      memory: memsize
+      memory: create_measurement_memory_metric(
+        allocated,
+        retained
+      ),
+      objects: create_measurement_objects_metric,
+      strings: create_measurement_strings_metric
     )
+  end
+
+  def create_measurement_memory_metric(allocated, retained)
+    Benchmark::Memory::Measurement::Metric.new(:memsize, allocated, retained)
+  end
+
+  def create_measurement_objects_metric
+    Benchmark::Memory::Measurement::Metric.new(:objects, 2_936_123, 0)
+  end
+
+  def create_measurement_strings_metric
+    Benchmark::Memory::Measurement::Metric.new(:strings, 100, 99)
   end
 end
