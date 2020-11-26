@@ -13,7 +13,7 @@ RSpec.describe Benchmark::Memory::Job do
     it 'adds a task to the list of tasks in the job' do
       job = create_job
 
-      expect { job.report('riddle me that') {} }.to(
+      expect { job.report('riddle me that') { nil } }.to(
         change(job.tasks, :count).by(1)
       )
     end
@@ -22,8 +22,8 @@ RSpec.describe Benchmark::Memory::Job do
   describe '#run' do
     it 'adds an entry to the report for each task' do
       job = create_job
-      job.report('with you') {}
-      job.report('my brown eyed girl') {}
+      job.report('with you') { nil }
+      job.report('my brown eyed girl') { nil }
 
       expect { job.run }.to change(job.full_report.entries, :count).by(2)
     end
@@ -32,8 +32,8 @@ RSpec.describe Benchmark::Memory::Job do
       it 'only executes one task for each call to run' do
         hold_buffer = StringIO.new
         job, output = create_job_and_output
-        job.report('with you') {}
-        job.report('my brown eyed girl') {}
+        job.report('with you') { nil }
+        job.report('my brown eyed girl') { nil }
         job.hold!(hold_buffer)
 
         expect { job.run }.to change(job.full_report.entries, :count).by(1)
@@ -45,8 +45,8 @@ RSpec.describe Benchmark::Memory::Job do
         # Reset for the second run
         hold_buffer.rewind
         job, output = create_job_and_output
-        job.report('with you') {}
-        job.report('my brown eyed girl') {}
+        job.report('with you') { nil }
+        job.report('my brown eyed girl') { nil }
         job.hold!(hold_buffer)
 
         expect { job.run }.to change(job.full_report.entries, :count).by(2)
@@ -70,8 +70,8 @@ RSpec.describe Benchmark::Memory::Job do
 
     it 'runs when there are entries and the job is configured to compare' do
       job, output = create_job_and_output
-      job.report('with you') {}
-      job.report('my brown eyed girl') {}
+      job.report('with you') { nil }
+      job.report('my brown eyed girl') { nil }
       job.compare!
 
       job.run
@@ -84,8 +84,8 @@ RSpec.describe Benchmark::Memory::Job do
   describe '#quiet?' do
     it 'prevents any output from being written' do
       job, output = create_job_and_output(quiet: true)
-      job.report('with you') {}
-      job.report('my brown eyed girl') {}
+      job.report('with you') { nil }
+      job.report('my brown eyed girl') { nil }
       job.compare!
 
       job.run

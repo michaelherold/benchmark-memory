@@ -26,7 +26,7 @@ RSpec.describe Benchmark::Memory do
     end
 
     it 'returns a report' do
-      expect(Benchmark.memory {}).to be_a(Benchmark::Memory::Report)
+      expect(Benchmark.memory { nil }).to be_a(Benchmark::Memory::Report)
     end
   end
 end
