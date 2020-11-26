@@ -8,9 +8,6 @@ Naming/FileName:
   Exclude:
     - lib/benchmark-memory.rb
 
-Style/ArrayCoercion:
-  Enabled: true
-
 Metrics/BlockLength:
   Exclude:
     - spec/**/*.rb
