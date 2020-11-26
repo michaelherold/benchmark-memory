@@ -1,9 +1,6 @@
 AllCops:
   TargetRubyVersion: 2.4
 
-Gemspec/RequiredRubyVersion:
-  Enabled: false
-
 Naming/FileName:
   Exclude:
     - lib/benchmark-memory.rb
