@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file. This projec
 ### Updated
 
 - [#16](https://github.com/michaelherold/benchmark-memory/pull/16): Updated Rubocop to ~> 1 and Ruby to 2.5.0+ - [@AlexWayfer](https://github.com/AlexWayfer).
+- [#19](https://github.com/michaelherold/benchmark-memory/pull/19): Updated to `memory_profiler` 1.0 - [@AlexWayfer](https://github.com/AlexWayfer).
 
 ## [0.1.2] - 2017-01-30
 
