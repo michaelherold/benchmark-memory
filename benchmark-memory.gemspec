@@ -18,5 +18,5 @@ Gem::Specification.new do |spec|
   spec.files += Dir['lib/**/*.rb']
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'memory_profiler', '~> 0.9'
+  spec.add_dependency 'memory_profiler', '~> 1.0'
 end
