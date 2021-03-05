@@ -2,6 +2,7 @@
 
 require 'spec_helper'
 
+# rubocop:disable Lint/EmptyBlock
 RSpec.describe Benchmark::Memory::Job do
   describe '#report' do
     it 'raises an ArgumentError when no block is specified' do
@@ -106,3 +107,4 @@ RSpec.describe Benchmark::Memory::Job do
     create_job_and_output.first
   end
 end
+# rubocop:enable Lint/EmptyBlock

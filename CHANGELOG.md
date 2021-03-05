@@ -11,6 +11,10 @@ All notable changes to this project will be documented in this file. This projec
 - [#11](https://github.com/michaelherold/benchmark-memory/pull/11): Drop support for Ruby < 2.4 - [@dblock](https://github.com/dblock).
 - Your contribution here.
 
+### Updated
+
+- [#16](https://github.com/michaelherold/benchmark-memory/pull/16): Updated Rubocop to ~> 1 and Ruby to 2.5.0+ - [@AlexWayfer](https://github.com/AlexWayfer).
+
 ## [0.1.2] - 2017-01-30
 
 ### Fixed

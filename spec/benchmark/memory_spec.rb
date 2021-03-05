@@ -26,7 +26,9 @@ RSpec.describe Benchmark::Memory do
     end
 
     it 'returns a report' do
+      # rubocop:disable Lint/EmptyBlock
       expect(Benchmark.memory {}).to be_a(Benchmark::Memory::Report)
+      # rubocop:enable Lint/EmptyBlock
     end
   end
 end
