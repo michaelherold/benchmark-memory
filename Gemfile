@@ -10,10 +10,13 @@ group :development do
   gem 'guard-inch'
   gem 'guard-rspec', '~> 4.6'
   gem 'guard-rubocop'
-  gem 'inch'
   gem 'rake', '>= 12.3.3'
-  gem 'rubocop', '~> 1'
   gem 'yard', '~> 0.9.11'
+
+  group :ci do
+    gem 'inch'
+    gem 'rubocop', '~> 1'
+  end
 
   group :test do
     gem 'pry'
@@ -21,7 +24,6 @@ group :development do
 end
 
 group :test do
-  gem 'codeclimate-test-reporter', require: false
   gem 'rspec', '~> 3.4'
-  gem 'simplecov'
+  gem 'simplecov', '> 0.20'
 end

@@ -1,0 +1,86 @@
+name: CI
+
+on:
+  - pull_request
+
+jobs:
+  lint:
+    name: Lint
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+
+      - uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-${{ matrix.ruby }}-${{ hashFiles('Gemfile') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.ruby }}-
+
+      - run: |
+          bundle config --local path vendor/bundle
+          bundle config --local with ci
+          bundle config --local without "development test"
+          bundle check || bundle install --jobs 4 --retry 3
+
+      - name: Lint code style
+        run: bundle exec rubocop
+
+      - name: Lint documentation
+        run: bundle exec inch
+
+  test:
+    name: Test on ${{ matrix.ruby }}
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby:
+          - 2.5
+          - 2.6
+          - 2.7
+          - 3.0
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+
+      - uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-${{ matrix.ruby }}-${{ hashFiles('benchmark-memory.gemspec', 'Gemfile') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.ruby }}-
+
+      - name: Bundle install
+        run: |
+          bundle config --local path vendor/bundle
+          bundle config --local with "test"
+          bundle config --local without "development ci"
+          bundle check || bundle install --jobs 4 --retry 3
+
+      - name: Test without reporting coverage
+        run: bundle exec rspec
+        if: ${{ matrix.ruby != '2.7' }}
+
+      - name: Test and report coverage
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          ./cc-test-reporter before-build
+          bundle exec rspec
+          ./cc-test-reporter after-build -t simplecov --exit-code $?
+        if: ${{ matrix.ruby == '2.7' }}
+        env:
+          CC_TEST_REPORTER_ID: 36f3969bdc1e5e821f38411648b9ba4217fa4518c9f58c30f0e9b0d1639b4f19
