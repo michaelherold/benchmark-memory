@@ -71,7 +71,7 @@ Comparison:
   dynamic allocation:         40 allocated - Infx more
 ```
 
-Reading this output shows that the "dynamic allocation" example allocates one string that is not retained outside the scope of the block. The "frozen string" example, however, does not allocate anything because it reuses the frozen string that was created during the method definition.
+Reading this output shows that the "dynamic allocation" example allocates one string that is not retained outside the scope of the block. The "frozen string" example, however, does not allocate anything because it reuses the frozen string that we created during the method definition.
 
 [benchmark-ips]: https://github.com/evanphx/benchmark-ips
 
@@ -95,7 +95,7 @@ Benchmark.memory do |x|
 end
 ```
 
-Calling `#compare!` on the job within the setup block of `Benchmark.memory` enables the output of the comparison section of the benchmark. Without it, this section is suppressed and you only get the raw numbers output during calculation.
+Calling `#compare!` on the job within the setup block of `Benchmark.memory` enables the output of the comparison section of the benchmark. Without it, the benchmark suppresses this section and you only get the raw numbers output during calculation.
 
 ### Hold results between invocations
 
@@ -107,7 +107,7 @@ end
 
 Often when you want to benchmark something, you compare two implementations of the same method. This is cumbersome because you have to keep two implementations side-by-side and call them in the same manner. Alternatively, you may want to compare how a method performs on two different versions of Ruby. To make both of these scenarios easier, you can enable "holding" on the benchmark.
 
-By calling `#hold!` on the benchmark, you enable the benchmark to write to the given file to store its results in a file that can be read in between invocations of your benchmark.
+By calling `#hold!` on the benchmark, you enable the benchmark to write to the given file to store its results in a file that can the benchmark reads in between invocations of your benchmark.
 
 For example, imagine that you have a library that exposes a method called `Statistics.calculate_monthly_recurring_revenue` that you want to optimize for memory usage because it keeps causing your worker server to run out of memory. You make some changes to the method and commit them to an `optimize-memory` branch in Git.
 
@@ -139,27 +139,28 @@ $ git checkout optimize-memory
 $ ruby benchmark_mrr.rb
 ```
 
-The first invocation of `ruby benchmark_mrr.rb` runs the benchmark in the "original" entry using your code in your `master` Git branch. The second invocation runs the benchmark in the "optimized" entry using the code in your `optimize-memory` Git branch. These two results are collated and then compared to show you the difference between the two.
+The first invocation of `ruby benchmark_mrr.rb` runs the benchmark in the "original" entry using your code in your `master` Git branch. The second invocation runs the benchmark in the "optimized" entry using the code in your `optimize-memory` Git branch. It then collates and compares the two results to show you the difference between the two.
 
 When enabling holding, the benchmark writes to the file passed into the `#hold!` method. After you run all of the entries in the benchmark, the benchmark automatically cleans up its log by deleting the file.
 
 ## Supported Ruby Versions
 
-This library aims to support and is [tested against][travis] the following Ruby versions:
+This library aims to support and is [tested against][ci] the following Ruby versions:
 
-* Ruby 2.4
 * Ruby 2.5
 * Ruby 2.6
+* Ruby 2.7
+* Ruby 3.0
 
 If something doesn't work on one of these versions, it's a bug.
 
-This library may inadvertently work (or seem to work) on other Ruby versions, however, support will only be provided for the versions listed above.
+This library may inadvertently work (or seem to work) on other Ruby versions, however, we will only give support for the versions listed above.
 
-If you would like this library to support another Ruby version or implementation, you may volunteer to be a maintainer. Being a maintainer entails making sure all tests run and pass on that implementation. When something breaks on your implementation, you will be responsible for providing patches in a timely fashion. If critical issues for a particular implementation exist at the time of a major release, support for that Ruby version may be dropped.
+If you would like this library to support another Ruby version or implementation, you may volunteer to be a maintainer. Being a maintainer entails making sure all tests run and pass on that implementation. When something breaks on your implementation, you will be responsible for providing patches in a timely fashion. If critical issues for a particular implementation exist at the time of a major release, we may drop support for that Ruby version.
 
 ## Versioning
 
-This library aims to adhere to [Semantic Versioning 2.0.0][semver]. Violations of this scheme should be reported as bugs. Specifically, if a minor or patch version is released that breaks backward compatibility, that version should be immediately yanked and/or a new version should be immediately released that restores compatibility. Breaking changes to the public API will only be introduced with new major versions. As a result of this policy, you can (and should) specify a dependency on this gem using the [Pessimistic Version Constraint][pessimistic] with two digits of precision. For example:
+This library aims to adhere to [Semantic Versioning 2.0.0][semver]. Report violations of this scheme as bugs. Specifically, if we release a minor or patch version that breaks backward compatibility, that version should be immediately yanked and/or a new version should be immediately released that restores compatibility. We will only introduce breaking changes to the public API with new major versions. As a result of this policy, you can (and should) specify a dependency on this gem using the [Pessimistic Version Constraint][pessimistic] with two digits of precision. For example:
 
     spec.add_dependency "benchmark-memory", "~> 0.1"
 
