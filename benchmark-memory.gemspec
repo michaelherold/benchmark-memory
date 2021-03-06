@@ -20,5 +20,5 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.5.0'
 
-  spec.add_dependency 'memory_profiler', '~> 0.9'
+  spec.add_dependency 'memory_profiler', '~> 1'
 end
