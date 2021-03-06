@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/michaelherold/benchmark-memory/workflows/CI/badge.svg)][ci]
 [![Code Climate](https://codeclimate.com/github/michaelherold/benchmark-memory/badges/gpa.svg)][codeclimate]
-[![Inline docs](http://inch-ci.org/github/michaelherold/benchmark-memory.svg?branch=master)][inch]
+[![Inline docs](http://inch-ci.org/github/michaelherold/benchmark-memory.svg?branch=main)][inch]
 
 [ci]: https://github.com/michaelherold/benchmark-memory/actions
 [codeclimate]: https://codeclimate.com/github/michaelherold/benchmark-memory
@@ -133,13 +133,13 @@ Note that the method calls are the same for both tests and that we have enabled 
 You could then run the following (assuming you saved your benchmark as `benchmark_mrr.rb`:
 
 ```sh
-$ git checkout master
+$ git checkout main
 $ ruby benchmark_mrr.rb
 $ git checkout optimize-memory
 $ ruby benchmark_mrr.rb
 ```
 
-The first invocation of `ruby benchmark_mrr.rb` runs the benchmark in the "original" entry using your code in your `master` Git branch. The second invocation runs the benchmark in the "optimized" entry using the code in your `optimize-memory` Git branch. It then collates and compares the two results to show you the difference between the two.
+The first invocation of `ruby benchmark_mrr.rb` runs the benchmark in the "original" entry using your code in your `main` Git branch. The second invocation runs the benchmark in the "optimized" entry using the code in your `optimize-memory` Git branch. It then collates and compares the two results to show you the difference between the two.
 
 When enabling holding, the benchmark writes to the file passed into the `#hold!` method. After you run all of the entries in the benchmark, the benchmark automatically cleans up its log by deleting the file.
 
