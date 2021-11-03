@@ -24,9 +24,10 @@ module Benchmark
 
         # Get the total amount of memory allocated in the entry.
         #
+        # @param comparison [Comparison] The {Comparison} to compare.
         # @return [Integer]
-        def allocated_memory
-          measurement.memory.allocated
+        def compared_metric(comparison)
+          measurement.public_send(comparison.metric).public_send(comparison.value)
         end
       end
     end

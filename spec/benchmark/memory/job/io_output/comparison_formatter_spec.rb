@@ -38,7 +38,7 @@ RSpec.describe Benchmark::Memory::Job::IOOutput::ComparisonFormatter do
   end
 
   def comparison(entries)
-    Benchmark::Memory::Report::Comparison.new(entries)
+    Benchmark::Memory::Report::Comparison.new(entries, Benchmark::Memory::Report::Comparator.new)
   end
 
   def create_high_entry

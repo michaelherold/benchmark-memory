@@ -6,6 +6,7 @@ require 'benchmark/memory/job/io_output'
 require 'benchmark/memory/job/null_output'
 require 'benchmark/memory/held_results'
 require 'benchmark/memory/report'
+require 'benchmark/memory/report/comparator'
 
 module Benchmark
   module Memory
@@ -20,7 +21,6 @@ module Benchmark
       #
       # @return [Job]
       def initialize(output: $stdout, quiet: false)
-        @compare = false
         @full_report = Report.new
         @held_results = HeldResults.new
         @quiet = quiet
@@ -40,14 +40,14 @@ module Benchmark
       #
       # @return [Boolean]
       def compare?
-        @compare
+        !!@comparator
       end
 
       # Enable output of a comparison of the different tasks.
       #
       # @return [void]
-      def compare!
-        @compare = true
+      def compare!(**spec)
+        @comparator = full_report.comparator = Report::Comparator.from_spec(spec.to_h)
       end
 
       # Enable holding results to compare between separate runs.

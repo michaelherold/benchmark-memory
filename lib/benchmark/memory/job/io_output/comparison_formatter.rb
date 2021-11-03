@@ -43,17 +43,17 @@ module Benchmark
           private
 
           def add_best_summary(best, output)
-            output << summary_message("%20s: %10i allocated\n", best)
+            output << summary_message("%20s: %10i %s\n", best)
           end
 
           def add_comparison(entry, best, output)
-            output << summary_message('%20s: %10i allocated - ', entry)
+            output << summary_message('%20s: %10i %s - ', entry)
             output << comparison_between(entry, best)
             output << "\n"
           end
 
           def comparison_between(entry, best)
-            ratio = entry.allocated_memory.to_f / best.allocated_memory
+            ratio = entry.compared_metric(comparison).to_f / best.compared_metric(comparison)
 
             if ratio.abs > 1
               format('%<ratio>.2fx more', ratio: ratio)
@@ -63,7 +63,7 @@ module Benchmark
           end
 
           def summary_message(message, entry)
-            format(message, entry.label, entry.allocated_memory)
+            format(message, entry.label, entry.compared_metric(comparison), comparison.value)
           end
         end
       end
