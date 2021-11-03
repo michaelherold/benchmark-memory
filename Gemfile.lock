@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    benchmark-memory (0.1.2)
+    benchmark-memory (0.2.0)
       memory_profiler (~> 1)
 
 GEM
