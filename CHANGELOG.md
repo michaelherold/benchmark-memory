@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file. This projec
 ### Added
 
 - [#11](https://github.com/michaelherold/benchmark-memory/pull/11): Drop support for Ruby < 2.4 - [@dblock](https://github.com/dblock).
+- [#23](https://github.com/michaelherold/benchmark-memory/pull/23): Allow for sorting the comparison by different criteria - [@michaelherold](https://github.com/michaelherold).
 - Your contribution here.
 
 ### Updated

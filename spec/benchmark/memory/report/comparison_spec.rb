@@ -7,8 +7,9 @@ RSpec.describe Benchmark::Memory::Report::Comparison do
     it 'is sorted from smallest allocation to largest' do
       high_entry = create_high_entry
       low_entry = create_low_entry
+      comparator = Benchmark::Memory::Report::Comparator.from_spec({})
 
-      comparison = described_class.new([high_entry, low_entry])
+      comparison = described_class.new([high_entry, low_entry], comparator)
 
       expect(comparison.entries).to eq([low_entry, high_entry])
     end

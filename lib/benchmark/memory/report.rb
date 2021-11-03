@@ -12,7 +12,11 @@ module Benchmark
       # @return [Report]
       def initialize
         @entries = []
+        @comparator = Comparator.new
       end
+
+      # @return [Comparator] The {Comparator} to use when creating the {Comparison}.
+      attr_accessor :comparator
 
       # @return [Array<Entry>] The entries in the report.
       attr_reader :entries
@@ -40,7 +44,7 @@ module Benchmark
       #
       # @return [Comparison]
       def comparison
-        @comparison ||= Comparison.new(entries)
+        @comparison ||= Comparison.new(entries, comparator)
       end
     end
   end

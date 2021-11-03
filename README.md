@@ -97,6 +97,30 @@ end
 
 Calling `#compare!` on the job within the setup block of `Benchmark.memory` enables the output of the comparison section of the benchmark. Without it, the benchmark suppresses this section and you only get the raw numbers output during calculation.
 
+By default, this compares the reports by the amount of allocated memory. You can configure the comparison along two axes. The first axis is the metric, which is one of: `:memory`, `:objects`, or `:strings`. The second is the value, which is either `:allocated` or `:retained`.
+
+Depending on what you're trying to benchmark, different configurations make sense. For example:
+
+``` ruby
+Benchmark.memory do |bench|
+  bench.compare! memory: :allocated
+  # or, equivalently:
+  # bench.compare!
+end
+```
+
+The purpose of the default configuration is benchmarking the total amount of memory an algorithm might use. If you're trying to improve a memory-intensive task, this is the mode you want.
+
+An alternative comparison might look like:
+
+``` ruby
+Benchmark.memory do |bench|
+  bench.compare! memory: :retained
+end
+```
+
+When you're looking for a memory leak, this configuration can help you because it compares your reports by the amount of memory that the garbage collector does not collect after the benchmark.
+
 ### Hold results between invocations
 
 ```ruby

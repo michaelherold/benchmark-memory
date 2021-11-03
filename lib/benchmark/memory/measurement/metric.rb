@@ -7,8 +7,6 @@ module Benchmark
     class Measurement
       # Describe the ratio of allocated vs. retained memory in a measurement.
       class Metric
-        include Comparable
-
         # Instantiate a Metric of allocated vs. retained memory.
         #
         # @param type [Symbol] The type of memory allocated in the metric.
@@ -28,15 +26,6 @@ module Benchmark
 
         # @return [Symbol] The type of memory allocated in the metric.
         attr_reader :type
-
-        # Sort by the total allocated.
-        #
-        # @param other [Metric] The other metric.
-        #
-        # @return [Integer]
-        def <=>(other)
-          allocated <=> other.allocated
-        end
       end
     end
   end

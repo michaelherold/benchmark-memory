@@ -7,7 +7,6 @@ module Benchmark
   module Memory
     # Encapsulate the combined metrics of an action.
     class Measurement
-      include Comparable
       include Enumerable
       extend Forwardable
 
@@ -49,22 +48,6 @@ module Benchmark
 
       # Enumerate through the metrics when enumerating a measurement.
       def_delegator :metrics, :each
-
-      # Compare two measurements for sorting purposes.
-      #
-      # @param other [Measurement] The other measurement
-      #
-      # @return [Integer]
-      def <=>(other)
-        memory <=> other.memory
-      end
-
-      # Total amount of allocated memory for the measurement.
-      #
-      # @return [Integer]
-      def allocated_memory
-        memory.allocated
-      end
     end
   end
 end
