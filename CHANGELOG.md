@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file. This projec
 
 [semver]: http://semver.org/spec/v2.0.0.html
 
+## [Unreleased](https://github.com/michaelherold/benchmark-memory/compare/v0.2.0...main)
+
+### Added
+
+- [#28](https://github.com/michaelherold/benchmark-memory/pull/28): Add the `order: :baseline` comparison method to compare results against a baseline report - [@michaelherold](https://github.com/michaelherold).
+
 ## [0.2.0](https://github.com/michaelherold/benchmark-memory/compare/v0.1.1...v0.2.0)
 
 ### Added

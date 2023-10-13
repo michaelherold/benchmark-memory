@@ -16,29 +16,39 @@ module Benchmark
         # @param spec [Hash<Symbol, Symbol>] The specification given for the {Comparator}
         # @return [Comparator]
         def self.from_spec(spec)
+          order =
+            case spec.delete(:order)
+            when :baseline then :baseline
+            else :lowest
+            end
+
           raise ArgumentError, 'Only send a single metric and value, in the form memory: :allocated' if spec.length > 1
 
           metric, value = *spec.first
           metric ||= :memory
           value  ||= :allocated
 
-          new(metric: metric, value: value)
+          new(metric: metric, order: order, value: value)
         end
 
         # Instantiate a new comparator
         #
         # @param metric [Symbol] (see #metric)
         # @param value [Symbol] (see #value)
-        def initialize(metric: :memory, value: :allocated)
+        def initialize(metric: :memory, order: :lowest, value: :allocated)
           raise ArgumentError, "Invalid metric: #{metric.inspect}" unless METRICS.include? metric
           raise ArgumentError, "Invalid value: #{value.inspect}" unless VALUES.include? value
 
           @metric = metric
+          @order = order
           @value = value
         end
 
         # @return [Symbol] The metric to compare, one of `:memory`, `:objects`, or `:strings`
         attr_reader :metric
+
+        # @return [Symbol] The order in which to report results, one of `:lowest` (default) or `:baseline`
+        attr_reader :order
 
         # @return [Symbol] The value to compare, one of `:allocated` or `:retained`
         attr_reader :value
@@ -50,6 +60,13 @@ module Benchmark
         # @return [Boolean]
         def ==(other)
           metric == other.metric && value == other.value
+        end
+
+        # Checks whether comparing by the baseline
+        #
+        # @return [Boolean]
+        def baseline?
+          order == :baseline
         end
 
         # Converts the {Comparator} to a Proc for passing to a block
