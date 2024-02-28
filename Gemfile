@@ -11,7 +11,7 @@ group :development do
   gem 'guard-rspec', '~> 4.6'
   gem 'guard-rubocop'
   gem 'rake', '>= 12.3.3'
-  gem 'yard', '~> 0.9.11'
+  gem 'yard', '~> 0.9.35'
 
   group :ci do
     gem 'inch'
