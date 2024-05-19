@@ -177,6 +177,7 @@ This library aims to support and is [tested against][ci] the following Ruby vers
 * Ruby 3.0
 * Ruby 3.1
 * Ruby 3.2
+* Ruby 3.3
 
 If something doesn't work on one of these versions, it's a bug.
 
