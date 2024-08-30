@@ -13,6 +13,17 @@ RSpec.describe Benchmark::Memory::Report::Comparison do
 
       expect(comparison.entries).to eq([low_entry, high_entry])
     end
+
+    it 'sorts the baseline first when there is one' do
+      high_entry = create_high_entry
+      mid_entry = create_mid_entry
+      low_entry = create_low_entry
+      comparator = Benchmark::Memory::Report::Comparator.from_spec({ order: :baseline })
+
+      comparison = described_class.new([high_entry, mid_entry, low_entry], comparator)
+
+      expect(comparison.entries).to eq([high_entry, low_entry, mid_entry])
+    end
   end
 
   def create_high_entry
@@ -22,6 +33,13 @@ RSpec.describe Benchmark::Memory::Report::Comparison do
     )
   end
   alias_method :create_entry, :create_high_entry
+
+  def create_mid_entry
+    Benchmark::Memory::Report::Entry.new(
+      'mid',
+      create_measurement(5_000, 2_500)
+    )
+  end
 
   def create_low_entry
     Benchmark::Memory::Report::Entry.new(
