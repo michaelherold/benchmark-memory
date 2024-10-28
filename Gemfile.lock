@@ -62,8 +62,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (2.1.1)
-    rexml (3.3.6)
-      strscan
+    rexml (3.3.9)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
       rspec-expectations (~> 3.10.0)
@@ -97,7 +96,6 @@ GEM
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.2)
     sparkr (0.4.1)
-    strscan (3.1.0)
     sync (0.5.0)
     term-ansicolor (1.7.1)
       tins (~> 1.0)
