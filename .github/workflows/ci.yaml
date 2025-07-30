@@ -14,7 +14,7 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2'
+          ruby-version: '3.4'
 
       - uses: actions/cache@v2
         with:
@@ -44,13 +44,9 @@ jobs:
       fail-fast: false
       matrix:
         ruby:
-          - '2.5'
-          - '2.6'
-          - '2.7'
-          - '3.0'
-          - '3.1'
           - '3.2'
           - '3.3'
+          - '3.4'
 
     steps:
       - uses: actions/checkout@v2
@@ -66,9 +62,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-${{ matrix.ruby }}-
 
-      - name: Ensure proper Bundler installed
-        if: ${{ matrix.ruby == 2.5 || matrix.ruby == 2.6 }}
-        run: gem install bundler:2.2.28
 
       - name: Bundle install
         run: |
@@ -79,7 +72,7 @@ jobs:
 
       - name: Test without reporting coverage
         run: bundle exec rspec
-        if: ${{ matrix.ruby != '2.7' }}
+        if: ${{ matrix.ruby != '3.4' }}
 
       - name: Test and report coverage
         run: |
@@ -88,6 +81,6 @@ jobs:
           ./cc-test-reporter before-build
           bundle exec rspec
           ./cc-test-reporter after-build -t simplecov --exit-code $?
-        if: ${{ matrix.ruby == '2.7' }}
+        if: ${{ matrix.ruby == '3.4' }}
         env:
           CC_TEST_REPORTER_ID: 36f3969bdc1e5e821f38411648b9ba4217fa4518c9f58c30f0e9b0d1639b4f19

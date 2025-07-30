@@ -171,13 +171,9 @@ When enabling holding, the benchmark writes to the file passed into the `#hold!`
 
 This library aims to support and is [tested against][ci] the following Ruby versions:
 
-* Ruby 2.5
-* Ruby 2.6
-* Ruby 2.7
-* Ruby 3.0
-* Ruby 3.1
 * Ruby 3.2
 * Ruby 3.3
+* Ruby 3.4
 
 If something doesn't work on one of these versions, it's a bug.
 
