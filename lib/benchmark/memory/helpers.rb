@@ -31,7 +31,7 @@ module Benchmark
 
         format("%10.3f#{value.unit}", value.to_f / (1000**value.scale))
       end
-      module_function :scale # rubocop:disable Style/AccessModifierDeclarations
+      module_function :scale
     end
   end
 end

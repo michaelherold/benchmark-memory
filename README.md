@@ -1,13 +1,5 @@
 # benchmark-memory
 
-[![CI](https://github.com/michaelherold/benchmark-memory/workflows/CI/badge.svg)][ci]
-[![Code Climate](https://codeclimate.com/github/michaelherold/benchmark-memory/badges/gpa.svg)][codeclimate]
-[![Inline docs](http://inch-ci.org/github/michaelherold/benchmark-memory.svg?branch=main)][inch]
-
-[ci]: https://github.com/michaelherold/benchmark-memory/actions
-[codeclimate]: https://codeclimate.com/github/michaelherold/benchmark-memory
-[inch]: http://inch-ci.org/github/michaelherold/benchmark-memory
-
 benchmark-memory is a tool that helps you to benchmark the memory usage of different pieces of code. It leverages the power of [memory_profiler] to give you a metric of the total amount of memory allocated and retained by a block, as well as the number of objects and strings allocated and retained.
 
 [memory_profiler]: https://github.com/SamSaffron/memory_profiler
@@ -171,13 +163,9 @@ When enabling holding, the benchmark writes to the file passed into the `#hold!`
 
 This library aims to support and is [tested against][ci] the following Ruby versions:
 
-* Ruby 2.5
-* Ruby 2.6
-* Ruby 2.7
-* Ruby 3.0
-* Ruby 3.1
 * Ruby 3.2
 * Ruby 3.3
+* Ruby 3.4
 
 If something doesn't work on one of these versions, it's a bug.
 
