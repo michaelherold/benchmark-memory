@@ -1,13 +1,5 @@
 # benchmark-memory
 
-[![CI](https://github.com/michaelherold/benchmark-memory/workflows/CI/badge.svg)][ci]
-[![Code Climate](https://codeclimate.com/github/michaelherold/benchmark-memory/badges/gpa.svg)][codeclimate]
-[![Inline docs](http://inch-ci.org/github/michaelherold/benchmark-memory.svg?branch=main)][inch]
-
-[ci]: https://github.com/michaelherold/benchmark-memory/actions
-[codeclimate]: https://codeclimate.com/github/michaelherold/benchmark-memory
-[inch]: http://inch-ci.org/github/michaelherold/benchmark-memory
-
 benchmark-memory is a tool that helps you to benchmark the memory usage of different pieces of code. It leverages the power of [memory_profiler] to give you a metric of the total amount of memory allocated and retained by a block, as well as the number of objects and strings allocated and retained.
 
 [memory_profiler]: https://github.com/SamSaffron/memory_profiler

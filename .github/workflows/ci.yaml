@@ -37,17 +37,5 @@ jobs:
           bundler-cache: true
           ruby-version: ${{ matrix.ruby }}
 
-      - name: Test without reporting coverage
+      - name: Run test suite
         run: bundle exec rspec
-        if: ${{ matrix.ruby != '3.4' }}
-
-      - name: Test and report coverage
-        run: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-          chmod +x ./cc-test-reporter
-          ./cc-test-reporter before-build
-          bundle exec rspec
-          ./cc-test-reporter after-build -t simplecov --exit-code $?
-        if: ${{ matrix.ruby == '3.4' }}
-        env:
-          CC_TEST_REPORTER_ID: 36f3969bdc1e5e821f38411648b9ba4217fa4518c9f58c30f0e9b0d1639b4f19
