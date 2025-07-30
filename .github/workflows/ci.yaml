@@ -6,28 +6,13 @@ on:
 jobs:
   lint:
     name: Lint
-
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v2
-
-      - uses: ruby/setup-ruby@v1
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: ruby/setup-ruby@bb6434c747fa7022e12fa1cae2a0951fcffcff26 # v1.253.0
         with:
+          bundler-cache: true
           ruby-version: '3.4'
-
-      - uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-${{ matrix.ruby }}-${{ hashFiles('Gemfile') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ matrix.ruby }}-
-
-      - run: |
-          bundle config --local path vendor/bundle
-          bundle config --local with ci
-          bundle config --local without "development test"
-          bundle check || bundle install --jobs 4 --retry 3
 
       - name: Lint code style
         run: bundle exec rubocop
@@ -37,9 +22,7 @@ jobs:
 
   test:
     name: Test on ${{ matrix.ruby }}
-
     runs-on: ubuntu-latest
-
     strategy:
       fail-fast: false
       matrix:
@@ -47,28 +30,12 @@ jobs:
           - '3.2'
           - '3.3'
           - '3.4'
-
     steps:
-      - uses: actions/checkout@v2
-
-      - uses: ruby/setup-ruby@v1
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: ruby/setup-ruby@bb6434c747fa7022e12fa1cae2a0951fcffcff26 # v1.253.0
         with:
+          bundler-cache: true
           ruby-version: ${{ matrix.ruby }}
-
-      - uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-${{ matrix.ruby }}-${{ hashFiles('benchmark-memory.gemspec', 'Gemfile') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ matrix.ruby }}-
-
-
-      - name: Bundle install
-        run: |
-          bundle config --local path vendor/bundle
-          bundle config --local with "test"
-          bundle config --local without "development ci"
-          bundle check || bundle install --jobs 4 --retry 3
 
       - name: Test without reporting coverage
         run: bundle exec rspec
