@@ -28,13 +28,13 @@ module Benchmark
             return '' unless comparison.possible?
 
             output = StringIO.new
-            best, *rest = comparison.entries
+            baseline, *rest = comparison.entries
             rest = Array(rest)
 
-            add_best_summary(best, output)
+            add_baseline_summary(baseline, output)
 
             rest.each do |entry|
-              add_comparison(entry, best, output)
+              add_comparison(entry, baseline, output)
             end
 
             output.string
@@ -42,21 +42,24 @@ module Benchmark
 
           private
 
-          def add_best_summary(best, output)
-            output << summary_message("%20s: %10i %s\n", best)
-          end
-
-          def add_comparison(entry, best, output)
-            output << summary_message('%20s: %10i %s - ', entry)
-            output << comparison_between(entry, best)
+          def add_baseline_summary(baseline, output)
+            output << summary_message('%20s: %10i %s', baseline)
             output << "\n"
           end
 
-          def comparison_between(entry, best)
-            ratio = entry.compared_metric(comparison).to_f / best.compared_metric(comparison)
+          def add_comparison(entry, baseline, output)
+            output << summary_message('%20s: %10i %s - ', entry)
+            output << comparison_between(entry, baseline)
+            output << "\n"
+          end
 
-            if ratio.abs > 1
-              format('%<ratio>.2fx more', ratio: ratio)
+          def comparison_between(entry, baseline)
+            ratio = entry.compared_metric(comparison).to_f / baseline.compared_metric(comparison)
+
+            if ratio > 1
+              format('%.2fx more', ratio)
+            elsif ratio < 1
+              format('%.2fx less', 1.0 / ratio)
             else
               'same'
             end
