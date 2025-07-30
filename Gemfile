@@ -5,22 +5,17 @@ source 'https://rubygems.org'
 gemspec
 
 group :development do
+  gem 'debug'
   gem 'guard'
   gem 'guard-bundler'
   gem 'guard-inch'
   gem 'guard-rspec', '~> 4.6'
   gem 'guard-rubocop'
+  gem 'inch'
+  gem 'irb'
   gem 'rake', '>= 12.3.3'
+  gem 'rubocop', '~> 1'
   gem 'yard', '~> 0.9.36'
-
-  group :ci do
-    gem 'inch'
-    gem 'rubocop', '~> 1'
-  end
-
-  group :test do
-    gem 'pry'
-  end
 end
 
 group :test do

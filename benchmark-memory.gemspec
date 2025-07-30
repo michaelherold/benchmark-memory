@@ -18,6 +18,8 @@ Gem::Specification.new do |spec|
   spec.files += Dir['lib/**/*.rb']
   spec.require_paths = ['lib']
 
+  spec.metadata['rubygems_mfa_required'] = 'true'
+
   spec.required_ruby_version = '>= 2.5.0'
 
   spec.add_dependency 'memory_profiler', '~> 1'

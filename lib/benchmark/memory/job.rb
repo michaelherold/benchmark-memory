@@ -121,6 +121,7 @@ module Benchmark
 
       private
 
+      # rubocop:disable Naming/PredicateMethod
       def run_with_held_results(task)
         measurement = @held_results[task.label]
         full_report.add_entry(task, measurement)
@@ -140,6 +141,7 @@ module Benchmark
           @held_results.holding?
         end
       end
+      # rubocop:enable Naming/PredicateMethod
     end
   end
 end
