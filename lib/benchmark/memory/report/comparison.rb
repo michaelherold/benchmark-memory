@@ -12,7 +12,13 @@ module Benchmark
         # @param entries [Array<Entry>] The entries to compare.
         # @param comparator [Comparator] The comparator to use when generating.
         def initialize(entries, comparator)
-          @entries = entries.sort_by(&comparator)
+          @entries =
+            if comparator.baseline?
+              baseline = entries.shift
+              [baseline, *entries.sort_by(&comparator)]
+            else
+              entries.sort_by(&comparator)
+            end
           @comparator = comparator
         end
 
@@ -22,11 +28,15 @@ module Benchmark
         # @return [Array<Entry>] The entries to compare.
         attr_reader :entries
 
+        # @!method baseline?
+        #   @return [Boolean] Whether the comparison will print in baseline order.
         # @!method metric
         #   @return [Symbol] The metric to compare, one of `:memory`, `:objects`, or `:strings`
+        # @!method order
+        #   @return [Symbol] The order to report results, one of `:lowest`, or `:baseline`
         # @!method value
         #   @return [Symbol] The value to compare, one of `:allocated` or `:retained`
-        def_delegators :@comparator, :metric, :value
+        def_delegators :@comparator, :baseline?, :order, :metric, :value
 
         # Check if the comparison is possible
         #

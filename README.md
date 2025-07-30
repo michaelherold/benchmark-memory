@@ -113,6 +113,21 @@ end
 
 When you're looking for a memory leak, this configuration can help you because it compares your reports by the amount of memory that the garbage collector does not collect after the benchmark.
 
+#### Ordering by a baseline
+
+When you're looking to see whether you can improve memory performance by refactoring some code, it can help to visually compare your reports against a baseline. To do so, place your baseline report first and enable the `order: :baseline` option like so:
+
+```ruby
+Benchmark.memory do |bench|
+  bench.report("my baseline") {}
+  bench.report("another test") {}
+
+  bench.compare! order: :baseline
+end
+```
+
+This will always show the baseline at the top of the comparison and order the alternatives in ascending order against the baseline.
+
 ### Hold results between invocations
 
 ```ruby

@@ -35,6 +35,18 @@ RSpec.describe Benchmark::Memory::Job::IOOutput::ComparisonFormatter do
 
       expect(formatter.to_s).to match(/same/)
     end
+
+    it 'does not output a comparison for the baseline' do
+      entries = [create_low_entry, create_high_entry]
+      comp = Benchmark::Memory::Report::Comparison.new(
+        entries,
+        Benchmark::Memory::Report::Comparator.new(order: :baseline)
+      )
+
+      formatter = described_class.new(comp)
+
+      expect(formatter.to_s).to match(/2500 allocated\n.*/).and(match(/10000 allocated - 4.00x more/))
+    end
   end
 
   def comparison(entries)
