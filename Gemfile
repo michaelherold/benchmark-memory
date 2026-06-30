@@ -15,7 +15,7 @@ group :development do
   gem 'irb'
   gem 'rake', '>= 12.3.3'
   gem 'rubocop', '~> 1'
-  gem 'yard', '~> 0.9.42'
+  gem 'yard', '~> 0.9.44'
 end
 
 group :test do
